@@ -1,12 +1,12 @@
-import { Routes, Route } from "react-router-dom"
-import { Navigation } from "./components/navigation"
-import HomePage from "./pages/home"
-import CoinDetailsPage from "./pages/coin-details"
-import FavoritesPage from "./pages/favorites"
-import { useTheme } from "./contexts/theme-context"
+import { Routes, Route } from "react-router-dom";
+import { Navigation } from "./components/navigation";
+import HomePage from "./pages/home";
+import CoinDetailsPage from "./pages/coin-details";
+import FavoritesPage from "./pages/favorites";
+import { useTheme } from "./contexts/theme-context";
 
 function App() {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   return (
     <div className={`min-h-screen ${theme}`}>
@@ -17,7 +17,7 @@ function App() {
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

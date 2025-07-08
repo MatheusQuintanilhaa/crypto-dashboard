@@ -1,10 +1,10 @@
-import React from "react"
-import ReactDOM from "react-dom/client"
-import { BrowserRouter } from "react-router-dom"
-import App from "./App"
-import "../app/globals.css"
-import { QueryProvider } from "./components/query-provider"
-import { ThemeProvider } from "./contexts/theme-context"
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import "../app/globals.css";
+import { QueryProvider } from "./components/query-provider";
+import { ThemeProvider } from "./contexts/theme-context";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </BrowserRouter>
       </QueryProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

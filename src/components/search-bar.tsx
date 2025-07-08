@@ -1,16 +1,21 @@
-import { Search, X } from "lucide-react"
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import { cn } from "../lib/utils"
+import { Search, X } from "lucide-react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { cn } from "../lib/utils";
 
 interface SearchBarProps {
-  value: string
-  onChange: (value: string) => void
-  placeholder?: string
-  className?: string
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  className?: string;
 }
 
-export function SearchBar({ value, onChange, placeholder, className }: SearchBarProps) {
+export function SearchBar({
+  value,
+  onChange,
+  placeholder,
+  className,
+}: SearchBarProps) {
   return (
     <div className="relative max-w-md w-full">
       <div className="absolute inset-0 bg-blue-500/10 rounded-lg blur-md opacity-30" />
@@ -39,5 +44,5 @@ export function SearchBar({ value, onChange, placeholder, className }: SearchBar
         )}
       </div>
     </div>
-  )
+  );
 }
