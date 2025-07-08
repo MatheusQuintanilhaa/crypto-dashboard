@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --background: 219 14% 97%; /* bg-blue-50 - fundo azul muito claro */
+    --foreground: 15 23 42; /* text-slate-800 - texto escuro */
+    --card: 0 0% 100%; /* branco puro para cards */
+    --card-foreground: 15 23 42; /* text-slate-800 */
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 9% 10%;
+    --popover-foreground: 15 23 42;
+    --primary: 221 83% 53%; /* blue-500 */
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 214 32% 91%; /* blue-100 */
+    --secondary-foreground: 30 41 59; /* slate-700 */
+    --muted: 214 32% 91%; /* blue-100 */
+    --muted-foreground: 100 7% 23%; /* slate-800 */
+    --accent: 217 91% 60%; /* blue-400 */
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --border: 214 32% 91%; /* blue-100 */
+    --input: 0 0% 100%; /* branco */
+    --ring: 221 83% 53%; /* blue-500 */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -128,14 +128,7 @@
 
 /* Modern crypto dashboard backgrounds */
 .crypto-background-light {
-  background: linear-gradient(
-    135deg,
-    #f8fafc 0%,
-    #e2e8f0 25%,
-    #cbd5e1 50%,
-    #94a3b8 75%,
-    #64748b 100%
-  );
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #bfdbfe 50%, #93c5fd 75%, #eff6ff 100%); /* gradiente azul suave */
   position: relative;
   overflow: hidden;
 }
@@ -154,13 +147,13 @@
     ),
     radial-gradient(
       circle at 80% 80%,
-      rgba(139, 92, 246, 0.1) 0%,
+      rgba(147, 197, 253, 0.1) 0%,
       transparent 50%
     ),
     radial-gradient(
-      circle at 40% 60%,
-      rgba(16, 185, 129, 0.05) 0%,
-      transparent 50%
+      circle at 50% 50%,
+      rgba(96, 165, 250, 0.05) 0%,
+      transparent 70%
     );
   pointer-events: none;
 }
@@ -205,11 +198,9 @@
 
 /* Glass morphism cards */
 .crypto-card-glass-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
-    0 1px 0 rgba(255, 255, 255, 0.8) inset, 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); /* gradiente sutil branco para blue-50 */
+  border: 1px solid #dbeafe; /* border-blue-200 */
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06); /* sombra azul suave */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -225,7 +216,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.4),
+    rgba(59, 130, 246, 0.1),
     transparent
   );
   transition: left 0.5s;
@@ -236,10 +227,9 @@
 }
 
 .crypto-card-glass-light:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.2),
-    0 0 20px rgba(59, 130, 246, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%); /* gradiente branco para blue-50 */
+  border-color: #93c5fd; /* border-blue-300 no hover */
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -2px rgba(59, 130, 246, 0.1); /* sombra azul mais intensa */
   transform: translateY(-2px);
 }
 
@@ -292,7 +282,11 @@
 }
 
 .crypto-text-gradient-success {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(
+    135deg,
+    #065f46 0%,
+    #064e3b 100%
+  ); /* green-800 para green-900 - máximo contraste no fundo branco */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -300,7 +294,11 @@
 }
 
 .crypto-text-gradient-danger {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: linear-gradient(
+    135deg,
+    #b91c1c 0%,
+    #991b1b 100%
+  ); /* red-700 para red-800 - máximo contraste no fundo branco */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

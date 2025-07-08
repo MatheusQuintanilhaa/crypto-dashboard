@@ -197,7 +197,7 @@ export default function HomePage() {
         {/* Enhanced Tabs */}
         <Tabs defaultValue="market" className="mt-8">
           <TabsList
-            className={`grid w-full max-w-md mx-auto grid-cols-2 mb-8 ${
+            className={`grid w-full max-w-md mx-auto grid-cols-2 gap-2 mb-8 ${
               theme === "dark"
                 ? "crypto-card-glass-dark"
                 : "crypto-card-glass-light"

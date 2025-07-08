@@ -1,13 +1,13 @@
-import { CoinCard } from "./coin-card"
-import { CoinCardSkeleton } from "./coin-card-skeleton"
-import { CoinRow } from "./coin-row"
-import { CoinRowSkeleton } from "./coin-row-skeleton"
-import type { Coin } from "../types/crypto"
+import { CoinCard } from "./coin-card";
+import { CoinCardSkeleton } from "./coin-card-skeleton";
+import { CoinRow } from "./coin-row";
+import { CoinRowSkeleton } from "./coin-row-skeleton";
+import type { Coin } from "../types/crypto";
 
 interface CoinListProps {
-  coins: Coin[]
-  isLoading?: boolean
-  view: "grid" | "list"
+  coins: Coin[];
+  isLoading?: boolean;
+  view: "grid" | "list";
 }
 
 export function CoinList({ coins, isLoading, view }: CoinListProps) {
@@ -24,7 +24,7 @@ export function CoinList({ coins, isLoading, view }: CoinListProps) {
           <CoinRowSkeleton key={i} />
         ))}
       </div>
-    )
+    );
   }
 
   if (coins.length === 0) {
@@ -47,10 +47,12 @@ export function CoinList({ coins, isLoading, view }: CoinListProps) {
             <path d="m21 21-4.3-4.3" />
           </svg>
         </div>
-        <p className="text-gray-400 text-lg">Nenhuma criptomoeda encontrada</p>
-        <p className="text-gray-500 text-sm">Tente ajustar seus filtros de busca</p>
+        <p className="text-muted-foreground text-lg">Nenhuma criptomoeda encontrada</p>
+        <p className="text-muted-foreground/70 text-sm">
+          Tente ajustar seus filtros de busca
+        </p>
       </div>
-    )
+    );
   }
 
   return view === "grid" ? (
@@ -61,7 +63,7 @@ export function CoinList({ coins, isLoading, view }: CoinListProps) {
     </div>
   ) : (
     <div className="space-y-2 overflow-hidden">
-      <div className="hidden md:grid grid-cols-[auto_1fr_auto_auto] gap-4 px-4 py-2 text-sm text-gray-400 border-b border-gray-800">
+      <div className="hidden md:grid grid-cols-[auto_1fr_auto_auto] gap-4 px-4 py-2 text-sm text-muted-foreground border-b border-border">
         <span className="w-8">#</span>
         <span>Nome</span>
         <span className="text-right">Preço</span>
@@ -71,5 +73,5 @@ export function CoinList({ coins, isLoading, view }: CoinListProps) {
         <CoinRow key={coin.id} coin={coin} />
       ))}
     </div>
-  )
+  );
 }

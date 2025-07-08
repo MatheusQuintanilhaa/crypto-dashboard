@@ -1,26 +1,40 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
-import { Skeleton } from "./ui/skeleton"
-import { Badge } from "./ui/badge"
-import { TrendingUp, TrendingDown, ArrowRight } from "lucide-react"
-import { Button } from "./ui/button"
-import { Link } from "react-router-dom"
-import type { Coin } from "../types/crypto"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Skeleton } from "./ui/skeleton";
+import { Badge } from "./ui/badge";
+import { TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
+import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
+import type { Coin } from "../types/crypto";
 
 interface MarketOverviewProps {
-  coins: Coin[]
-  isLoading: boolean
+  coins: Coin[];
+  isLoading: boolean;
 }
 
 export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
   // Get top gainers and losers
   const topGainers = [...coins]
-    .sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
-    .slice(0, 5)
+    .sort(
+      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
+    )
+    .slice(0, 5);
 
-  const topLosers = [...coins].sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h).slice(0, 5)
+  const topLosers = [...coins]
+    .sort(
+      (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
+    )
+    .slice(0, 5);
 
   // Get top by volume
-  const topByVolume = [...coins].sort((a, b) => b.total_volume - a.total_volume).slice(0, 5)
+  const topByVolume = [...coins]
+    .sort((a, b) => b.total_volume - a.total_volume)
+    .slice(0, 5);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("pt-BR", {
@@ -28,14 +42,14 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
       currency: "USD",
       minimumFractionDigits: 2,
       maximumFractionDigits: price < 1 ? 6 : 2,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   const formatVolume = (volume: number) => {
-    if (volume >= 1e9) return `$${(volume / 1e9).toFixed(2)}B`
-    if (volume >= 1e6) return `$${(volume / 1e6).toFixed(2)}M`
-    return `$${volume.toLocaleString()}`
-  }
+    if (volume >= 1e9) return `$${(volume / 1e9).toFixed(2)}B`;
+    if (volume >= 1e6) return `$${(volume / 1e6).toFixed(2)}M`;
+    return `$${volume.toLocaleString()}`;
+  };
 
   if (isLoading) {
     return (
@@ -59,7 +73,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
           </Card>
         ))}
       </div>
-    )
+    );
   }
 
   return (
@@ -81,13 +95,22 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                 className="flex items-center justify-between hover:bg-green-900/20 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <img src={coin.image || "/placeholder.svg"} alt={coin.name} className="w-6 h-6 rounded-full" />
+                  <img
+                    src={coin.image || "/placeholder.svg"}
+                    alt={coin.name}
+                    className="w-6 h-6 rounded-full"
+                  />
                   <div>
-                    <p className="font-medium">{coin.name}</p>
-                    <p className="text-xs text-gray-400">{formatPrice(coin.current_price)}</p>
+                    <p className="font-medium text-white">{coin.name}</p>
+                    <p className="text-xs text-gray-200">
+                      {formatPrice(coin.current_price)}
+                    </p>
                   </div>
                 </div>
-                <Badge variant="outline" className="bg-green-900/30 text-green-400 border-green-700">
+                <Badge
+                  variant="outline"
+                  className="bg-green-900/30 text-green-400 border-green-700"
+                >
                   +{coin.price_change_percentage_24h.toFixed(2)}%
                 </Badge>
               </Link>
@@ -120,13 +143,22 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                 className="flex items-center justify-between hover:bg-red-900/20 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <img src={coin.image || "/placeholder.svg"} alt={coin.name} className="w-6 h-6 rounded-full" />
+                  <img
+                    src={coin.image || "/placeholder.svg"}
+                    alt={coin.name}
+                    className="w-6 h-6 rounded-full"
+                  />
                   <div>
-                    <p className="font-medium">{coin.name}</p>
-                    <p className="text-xs text-gray-400">{formatPrice(coin.current_price)}</p>
+                    <p className="font-medium text-white">{coin.name}</p>
+                    <p className="text-xs text-gray-200">
+                      {formatPrice(coin.current_price)}
+                    </p>
                   </div>
                 </div>
-                <Badge variant="outline" className="bg-red-900/30 text-red-400 border-red-700">
+                <Badge
+                  variant="outline"
+                  className="bg-red-900/30 text-red-400 border-red-700"
+                >
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </Badge>
               </Link>
@@ -172,15 +204,23 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                 className="flex items-center justify-between hover:bg-blue-900/20 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <img src={coin.image || "/placeholder.svg"} alt={coin.name} className="w-6 h-6 rounded-full" />
+                  <img
+                    src={coin.image || "/placeholder.svg"}
+                    alt={coin.name}
+                    className="w-6 h-6 rounded-full"
+                  />
                   <div>
-                    <p className="font-medium">{coin.name}</p>
-                    <p className="text-xs text-gray-400">{formatPrice(coin.current_price)}</p>
+                    <p className="font-medium text-white">{coin.name}</p>
+                    <p className="text-xs text-gray-200">
+                      {formatPrice(coin.current_price)}
+                    </p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-medium">{formatVolume(coin.total_volume)}</p>
-                  <p className="text-xs text-gray-400">24h</p>
+                  <p className="text-sm font-medium text-white">
+                    {formatVolume(coin.total_volume)}
+                  </p>
+                  <p className="text-xs text-gray-200">24h</p>
                 </div>
               </Link>
             ))}
@@ -195,5 +235,5 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

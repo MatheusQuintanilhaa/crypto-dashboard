@@ -2,6 +2,7 @@
 
 import { Button } from "./ui/button"
 import { TrendingUp, TrendingDown, List, DollarSign, BarChart3, LayoutGrid, LayoutList } from "lucide-react"
+import { useTheme } from "../contexts/theme-context"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,15 +29,45 @@ export function FilterButtons({
   view,
   onViewChange,
 }: FilterButtonsProps) {
+  const { theme } = useTheme();
+  
+  const getThemeClasses = () => {
+    if (theme === "light") {
+      return {
+        container: "bg-white/70 backdrop-blur-sm border-blue-200",
+        buttonInactive: "text-slate-600 hover:text-slate-800 hover:bg-blue-50",
+        buttonActive: "bg-blue-100 text-blue-700",
+        dropdown: "border-blue-200 bg-white text-slate-800",
+        dropdownItem: "hover:bg-blue-50",
+        viewContainer: "bg-white/70 backdrop-blur-sm border-blue-200",
+        viewButtonInactive: "text-slate-600 hover:text-slate-800 hover:bg-blue-50",
+        viewButtonActive: "bg-blue-100 text-blue-700"
+      };
+    } else {
+      return {
+        container: "bg-gray-800/50 backdrop-blur-sm border-gray-700/50",
+        buttonInactive: "text-gray-400 hover:text-white hover:bg-gray-700/50",
+        buttonActive: "bg-gray-700 text-white",
+        dropdown: "bg-gray-800 border-gray-700 text-gray-200",
+        dropdownItem: "hover:bg-gray-700",
+        viewContainer: "bg-gray-800/50 backdrop-blur-sm border-gray-700/50",
+        viewButtonInactive: "text-gray-400 hover:text-white hover:bg-gray-700/50",
+        viewButtonActive: "bg-gray-700 text-white"
+      };
+    }
+  };
+
+  const themeClasses = getThemeClasses();
+
   return (
     <div className="flex flex-col sm:flex-row gap-4 items-center">
-      <div className="flex items-center gap-2 bg-gray-800/50 backdrop-blur-sm p-1 rounded-lg border border-gray-700/50">
+      <div className={`flex items-center gap-2 ${themeClasses.container} p-1 rounded-lg border`}>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => onFilterChange("all")}
           className={
-            filter === "all" ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white hover:bg-gray-700/50"
+            filter === "all" ? themeClasses.buttonActive : themeClasses.buttonInactive
           }
         >
           <List className="h-4 w-4 mr-1" />
@@ -49,7 +80,7 @@ export function FilterButtons({
           className={
             filter === "positive"
               ? "bg-green-900/50 text-green-400"
-              : "text-gray-400 hover:text-green-400 hover:bg-green-900/20"
+              : `${themeClasses.buttonInactive.split('hover:')[0]} hover:text-green-400 hover:bg-green-900/20`
           }
         >
           <TrendingUp className="h-4 w-4 mr-1" />
@@ -62,7 +93,7 @@ export function FilterButtons({
           className={
             filter === "negative"
               ? "bg-red-900/50 text-red-400"
-              : "text-gray-400 hover:text-red-400 hover:bg-red-900/20"
+              : `${themeClasses.buttonInactive.split('hover:')[0]} hover:text-red-400 hover:bg-red-900/20`
           }
         >
           <TrendingDown className="h-4 w-4 mr-1" />
@@ -76,25 +107,25 @@ export function FilterButtons({
             <Button
               variant="outline"
               size="sm"
-              className="border-gray-700 bg-gray-800/50 text-gray-300 hover:bg-gray-700"
+              className={`${themeClasses.dropdown.split(' ')[0]} ${themeClasses.container.split(' ')[0]} ${themeClasses.buttonInactive}`}
             >
               <BarChart3 className="h-4 w-4 mr-2" />
               {sortBy === "market_cap" ? "Market Cap" : "Preço"}
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-gray-800 border-gray-700 text-gray-200">
+          <DropdownMenuContent className={themeClasses.dropdown}>
             <DropdownMenuLabel>Ordenar por</DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-gray-700" />
+            <DropdownMenuSeparator className={theme === "light" ? "bg-blue-200" : "bg-gray-700"} />
             <DropdownMenuItem
               onClick={() => onSortChange("market_cap")}
-              className={sortBy === "market_cap" ? "bg-gray-700" : ""}
+              className={`${themeClasses.dropdownItem} ${sortBy === "market_cap" ? (theme === "light" ? "bg-blue-100" : "bg-gray-700") : ""}`}
             >
               <BarChart3 className="h-4 w-4 mr-2" />
               Market Cap
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => onSortChange("current_price")}
-              className={sortBy === "current_price" ? "bg-gray-700" : ""}
+              className={`${themeClasses.dropdownItem} ${sortBy === "current_price" ? (theme === "light" ? "bg-blue-100" : "bg-gray-700") : ""}`}
             >
               <DollarSign className="h-4 w-4 mr-2" />
               Preço
@@ -102,12 +133,12 @@ export function FilterButtons({
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <div className="bg-gray-800/50 backdrop-blur-sm p-1 rounded-lg border border-gray-700/50">
+        <div className={`${themeClasses.viewContainer} p-1 rounded-lg border`}>
           <Button
             variant="ghost"
             size="icon"
             onClick={() => onViewChange("grid")}
-            className={view === "grid" ? "bg-gray-700" : "text-gray-400"}
+            className={view === "grid" ? themeClasses.viewButtonActive : themeClasses.viewButtonInactive}
           >
             <LayoutGrid className="h-4 w-4" />
             <span className="sr-only">Grid view</span>
@@ -116,7 +147,7 @@ export function FilterButtons({
             variant="ghost"
             size="icon"
             onClick={() => onViewChange("list")}
-            className={view === "list" ? "bg-gray-700" : "text-gray-400"}
+            className={view === "list" ? themeClasses.viewButtonActive : themeClasses.viewButtonInactive}
           >
             <LayoutList className="h-4 w-4" />
             <span className="sr-only">List view</span>
