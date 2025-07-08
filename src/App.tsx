@@ -1,5 +1,3 @@
-"use client"
-
 import { Routes, Route } from "react-router-dom"
 import { Navigation } from "./components/navigation"
 import HomePage from "./pages/home"

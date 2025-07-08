@@ -1,16 +1,16 @@
-"use client"
-
 import { Search, X } from "lucide-react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
+import { cn } from "../lib/utils"
 
 interface SearchBarProps {
   value: string
   onChange: (value: string) => void
   placeholder?: string
+  className?: string
 }
 
-export function SearchBar({ value, onChange, placeholder }: SearchBarProps) {
+export function SearchBar({ value, onChange, placeholder, className }: SearchBarProps) {
   return (
     <div className="relative max-w-md w-full">
       <div className="absolute inset-0 bg-blue-500/10 rounded-lg blur-md opacity-30" />
@@ -21,7 +21,10 @@ export function SearchBar({ value, onChange, placeholder }: SearchBarProps) {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="pl-10 pr-10 bg-gray-800/70 border-gray-700/50 text-white placeholder-gray-400 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus-visible:border-blue-500"
+          className={cn(
+            "pl-10 pr-10 bg-gray-800/70 border-gray-700/50 text-white placeholder-gray-400 focus-visible:ring-blue-500 focus-visible:ring-offset-0 focus-visible:border-blue-500",
+            className
+          )}
         />
         {value && (
           <Button
