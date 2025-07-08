@@ -57,18 +57,18 @@ export function CoinCard({ coin }: CoinCardProps) {
   return (
     <Link href={`/coin/${coin.id}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       <Card
-        className={`relative overflow-hidden transition-all duration-300 ${
+        className={`relative overflow-hidden transition-all duration-300 bg-white dark:bg-card-bg border-gray-200 dark:border-card-border hover:border-gray-300 dark:hover:border-card-border-hover backdrop-blur-sm hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-primary/5 hover:-translate-y-1 ${
           isPositive
-            ? "bg-gradient-to-br from-gray-800/80 to-green-900/10 border-gray-700/50 hover:border-green-700/50"
-            : "bg-gradient-to-br from-gray-800/80 to-red-900/10 border-gray-700/50 hover:border-red-700/50"
-        } backdrop-blur-sm hover:shadow-lg hover:shadow-blue-900/10 hover:-translate-y-1`}
+            ? "hover:shadow-green-500/10"
+            : "hover:shadow-red-500/10"
+        }`}
       >
         {/* Background gradient effect */}
         <div
-          className={`absolute inset-0 opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-20" : ""} ${
+          className={`absolute inset-0 opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-10" : ""} ${
             isPositive
-              ? "bg-gradient-to-r from-green-500/20 to-blue-500/20"
-              : "bg-gradient-to-r from-red-500/20 to-purple-500/20"
+              ? "bg-gradient-to-r from-green-400/20 to-blue-400/20"
+              : "bg-gradient-to-r from-red-400/20 to-orange-400/20"
           }`}
         />
 
@@ -86,20 +86,20 @@ export function CoinCard({ coin }: CoinCardProps) {
                 />
                 <div
                   className={`absolute inset-0 rounded-full ${isHovered ? "animate-ping" : ""} ${
-                    isPositive ? "bg-green-500/10" : "bg-red-500/10"
+                    isPositive ? "bg-green-400/10" : "bg-red-400/10"
                   } opacity-0 ${isHovered ? "opacity-100" : ""}`}
                 />
               </div>
             ) : (
-              <div className="w-9 h-9 bg-gray-700 rounded-full flex items-center justify-center">
-                <span className="text-sm font-bold text-gray-300">{coin.symbol.charAt(0).toUpperCase()}</span>
+              <div className="w-9 h-9 bg-muted rounded-full flex items-center justify-center">
+                <span className="text-sm font-bold text-muted-foreground">{coin.symbol.charAt(0).toUpperCase()}</span>
               </div>
             )}
             <div>
-              <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors">{coin.name}</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{coin.name}</h3>
               <div className="flex items-center gap-1">
-                <p className="text-sm text-gray-400 uppercase">{coin.symbol}</p>
-                <span className="text-xs text-gray-500">#{coin.market_cap_rank}</span>
+                <p className="text-sm text-gray-600 dark:text-gray-400 uppercase">{coin.symbol}</p>
+                <span className="text-xs text-gray-500 dark:text-gray-500">#{coin.market_cap_rank}</span>
               </div>
             </div>
           </div>
@@ -109,8 +109,8 @@ export function CoinCard({ coin }: CoinCardProps) {
             onClick={handleFavoriteClick}
             className={`p-1 h-8 w-8 rounded-full ${
               isFavorite
-                ? "text-red-500 hover:text-red-400 bg-red-500/10"
-                : "text-gray-400 hover:text-red-500 hover:bg-red-500/10"
+                ? "text-red-600 hover:text-red-500 bg-red-50 dark:bg-red-900/20 dark:text-red-400"
+                : "text-gray-500 hover:text-red-600 hover:bg-red-50 dark:text-gray-400 dark:hover:text-red-400 dark:hover:bg-red-900/20"
             } transition-colors`}
           >
             <Heart className={`h-4 w-4 ${isFavorite ? "fill-current" : ""}`} />
@@ -120,35 +120,37 @@ export function CoinCard({ coin }: CoinCardProps) {
         <CardContent className="relative z-10">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-lg font-bold text-white">{formatPrice(coin.current_price)}</span>
+              <span className="text-lg font-bold text-gray-900 dark:text-white">{formatPrice(coin.current_price)}</span>
               <div
-                className={`flex items-center space-x-1 px-2 py-1 rounded-full ${
-                  isPositive ? "text-green-500 bg-green-500/10" : "text-red-500 bg-red-500/10"
+                className={`flex items-center space-x-1 px-2 py-1 rounded-full font-semibold ${
+                  isPositive 
+                    ? "text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30" 
+                    : "text-red-700 bg-red-100 dark:text-red-400 dark:bg-red-900/30"
                 }`}
               >
                 {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
                 <span className="text-xs font-medium">{Math.abs(coin.price_change_percentage_24h).toFixed(2)}%</span>
               </div>
             </div>
-            <div className="text-sm text-gray-400 space-y-1">
+            <div className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex justify-between">
                 <span>Market Cap:</span>
-                <span>{formatMarketCap(coin.market_cap)}</span>
+                <span className="font-medium">{formatMarketCap(coin.market_cap)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Volume 24h:</span>
-                <span>{formatMarketCap(coin.total_volume)}</span>
+                <span className="font-medium">{formatMarketCap(coin.total_volume)}</span>
               </div>
             </div>
 
             {/* View details button that appears on hover */}
             <div
-              className={`absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent flex items-end justify-center p-4 opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-100" : ""}`}
+              className={`absolute inset-0 bg-gradient-to-t from-white/90 dark:from-gray-900/90 via-transparent to-transparent flex items-end justify-center p-4 opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-100" : ""}`}
             >
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-2 bg-gray-800/80 border-gray-600 text-white hover:bg-gray-700"
+                className="gap-2 bg-white/90 dark:bg-gray-800/90 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
               >
                 Ver detalhes <ExternalLink className="h-3 w-3" />
               </Button>

@@ -29,6 +29,19 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    
+    /* Custom crypto dashboard colors for light mode */
+    --card-bg: 0 0% 100%;
+    --card-bg-hover: 220 13% 97%;
+    --text-primary: 240 10% 3.9%;
+    --text-secondary: 240 5% 45%;
+    --text-accent: 217 91% 50%;
+    --positive-bg: 142 76% 36%;
+    --negative-bg: 0 84% 60%;
+    --positive-bg-subtle: 142 50% 95%;
+    --negative-bg-subtle: 0 50% 95%;
+    --card-border: 240 6% 90%;
+    --card-border-hover: 217 91% 70%;
   }
 
   .dark {
@@ -56,6 +69,19 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
+    /* Custom crypto dashboard colors for dark mode */
+    --card-bg: 240 10% 5%;
+    --card-bg-hover: 240 10% 7%;
+    --text-primary: 0 0% 98%;
+    --text-secondary: 240 5% 64.9%;
+    --text-accent: 217 91% 70%;
+    --positive-bg: 142 76% 50%;
+    --negative-bg: 0 84% 60%;
+    --positive-bg-subtle: 142 69% 8%;
+    --negative-bg-subtle: 0 93% 8%;
+    --card-border: 240 3.7% 15.9%;
+    --card-border-hover: 217 91% 30%;
   }
 }
 
@@ -132,4 +158,50 @@
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+/* Custom crypto dashboard styles */
+.crypto-card-light {
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.crypto-card-light:hover {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border-color: #9ca3af;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.08);
+}
+
+.crypto-card-dark {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+}
+
+.crypto-card-dark:hover {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  border-color: #475569;
+}
+
+/* Light mode improvements */
+.light .crypto-positive {
+  color: #047857;
+  background-color: #ecfdf5;
+  font-weight: 600;
+}
+
+.light .crypto-negative {
+  color: #dc2626;
+  background-color: #fef2f2;
+  font-weight: 600;
+}
+
+.dark .crypto-positive {
+  color: #10b981;
+  background-color: #064e3b;
+}
+
+.dark .crypto-negative {
+  color: #ef4444;
+  background-color: #7f1d1d;
 }

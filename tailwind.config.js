@@ -45,6 +45,23 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+          bg: "hsl(var(--card-bg))",
+          "bg-hover": "hsl(var(--card-bg-hover))",
+          border: "hsl(var(--card-border))",
+          "border-hover": "hsl(var(--card-border-hover))",
+        },
+        text: {
+          primary: "hsl(var(--text-primary))",
+          secondary: "hsl(var(--text-secondary))",
+          accent: "hsl(var(--text-accent))",
+        },
+        positive: {
+          DEFAULT: "hsl(var(--positive-bg))",
+          subtle: "hsl(var(--positive-bg-subtle))",
+        },
+        negative: {
+          DEFAULT: "hsl(var(--negative-bg))",
+          subtle: "hsl(var(--negative-bg-subtle))",
         },
         gray: {
           50: "#f9fafb",
