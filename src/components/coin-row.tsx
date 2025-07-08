@@ -33,7 +33,7 @@ export function CoinRow({ coin }: CoinRowProps) {
         mcap: "text-slate-600",
         placeholder: "text-slate-600",
         placeholderBg: "bg-slate-200",
-        favoriteInactive: "text-slate-400 hover:text-red-500"
+        favoriteInactive: "text-slate-400 hover:text-red-500",
       };
     } else {
       return {
@@ -45,7 +45,7 @@ export function CoinRow({ coin }: CoinRowProps) {
         mcap: "text-gray-200",
         placeholder: "text-gray-100",
         placeholderBg: "bg-gray-700",
-        favoriteInactive: "text-gray-400 hover:text-red-500"
+        favoriteInactive: "text-gray-400 hover:text-red-500",
       };
     }
   };
@@ -72,9 +72,13 @@ export function CoinRow({ coin }: CoinRowProps) {
 
   return (
     <Link to={`/coin/${coin.id}`}>
-      <div className={`grid grid-cols-[auto_1fr_auto_auto] md:grid-cols-[auto_1fr_auto_auto] gap-4 items-center p-4 rounded-lg ${themeClasses.container} transition-colors border backdrop-blur-sm`}>
+      <div
+        className={`grid grid-cols-[auto_1fr_auto_auto] md:grid-cols-[auto_1fr_auto_auto] gap-4 items-center p-4 rounded-lg ${themeClasses.container} transition-colors border backdrop-blur-sm`}
+      >
         <div className="flex items-center gap-2">
-          <span className={`${themeClasses.ranking} text-sm`}>#{coin.market_cap_rank}</span>
+          <span className={`${themeClasses.ranking} text-sm`}>
+            #{coin.market_cap_rank}
+          </span>
         </div>
 
         <div className="flex items-center gap-3">
@@ -86,7 +90,9 @@ export function CoinRow({ coin }: CoinRowProps) {
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className={`w-7 h-7 ${themeClasses.placeholderBg} rounded-full flex items-center justify-center`}>
+            <div
+              className={`w-7 h-7 ${themeClasses.placeholderBg} rounded-full flex items-center justify-center`}
+            >
               <span className={`text-xs font-bold ${themeClasses.placeholder}`}>
                 {coin.symbol.charAt(0).toUpperCase()}
               </span>
@@ -94,7 +100,9 @@ export function CoinRow({ coin }: CoinRowProps) {
           )}
           <div>
             <div className="flex items-center gap-2">
-              <h3 className={`font-medium ${themeClasses.name}`}>{coin.name}</h3>
+              <h3 className={`font-medium ${themeClasses.name}`}>
+                {coin.name}
+              </h3>
               <Button
                 variant="ghost"
                 size="sm"
@@ -110,7 +118,9 @@ export function CoinRow({ coin }: CoinRowProps) {
                 />
               </Button>
             </div>
-            <p className={`text-xs ${themeClasses.symbol} uppercase`}>{coin.symbol}</p>
+            <p className={`text-xs ${themeClasses.symbol} uppercase`}>
+              {coin.symbol}
+            </p>
           </div>
         </div>
 

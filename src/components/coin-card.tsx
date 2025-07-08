@@ -132,18 +132,26 @@ export function CoinCard({ coin }: CoinCardProps) {
                 />
               </div>
             ) : (
-              <div className={`w-9 h-9 ${textClasses.placeholderBg} rounded-full flex items-center justify-center`}>
-                <span className={`text-sm font-bold ${textClasses.placeholder}`}>
+              <div
+                className={`w-9 h-9 ${textClasses.placeholderBg} rounded-full flex items-center justify-center`}
+              >
+                <span
+                  className={`text-sm font-bold ${textClasses.placeholder}`}
+                >
                   {coin.symbol.charAt(0).toUpperCase()}
                 </span>
               </div>
             )}
             <div>
-              <h3 className={`font-semibold ${textClasses.primary} group-hover:text-blue-400 transition-colors`}>
+              <h3
+                className={`font-semibold ${textClasses.primary} group-hover:text-blue-400 transition-colors`}
+              >
                 {coin.name}
               </h3>
               <div className="flex items-center gap-1">
-                <p className={`text-sm ${textClasses.secondary} uppercase`}>{coin.symbol}</p>
+                <p className={`text-sm ${textClasses.secondary} uppercase`}>
+                  {coin.symbol}
+                </p>
                 <span className={`text-xs ${textClasses.tertiary}`}>
                   #{coin.market_cap_rank}
                 </span>

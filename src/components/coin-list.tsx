@@ -47,7 +47,9 @@ export function CoinList({ coins, isLoading, view }: CoinListProps) {
             <path d="m21 21-4.3-4.3" />
           </svg>
         </div>
-        <p className="text-muted-foreground text-lg">Nenhuma criptomoeda encontrada</p>
+        <p className="text-muted-foreground text-lg">
+          Nenhuma criptomoeda encontrada
+        </p>
         <p className="text-muted-foreground/70 text-sm">
           Tente ajustar seus filtros de busca
         </p>

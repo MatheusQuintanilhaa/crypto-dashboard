@@ -19,20 +19,30 @@ interface MarketOverviewProps {
 
 // Theme helper functions
 const getThemeClasses = (isDarkMode: boolean = false) => ({
-  background: isDarkMode ? "bg-slate-900" : "bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100",
-  card: isDarkMode ? "bg-slate-800/90 border-slate-700" : "bg-gradient-to-br from-white to-blue-50 border-blue-200/30 shadow-md",
-  cardHover: isDarkMode ? "hover:bg-slate-700/90" : "hover:bg-gradient-to-br hover:from-white hover:to-blue-100",
-  text: isDarkMode ? "text-slate-100" : "text-slate-800",
-  textMuted: isDarkMode ? "text-slate-400" : "text-slate-600",
-  textLight: isDarkMode ? "text-slate-300" : "text-slate-500",
+  background: isDarkMode
+    ? "bg-slate-900"
+    : "bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100",
+  card: isDarkMode
+    ? "bg-slate-800/90 border-slate-700"
+    : "bg-gradient-to-br from-white to-blue-50 border-blue-200/30 shadow-md",
+  cardHover: isDarkMode
+    ? "hover:bg-slate-700/90"
+    : "hover:bg-gradient-to-br hover:from-white hover:to-blue-100",
+  text: isDarkMode ? "text-slate-100" : "text-gray-900",  // Texto mais escuro
+  textMuted: isDarkMode ? "text-slate-400" : "text-gray-700",  // Texto secundário mais escuro
+  textLight: isDarkMode ? "text-slate-300" : "text-gray-600",  // Texto auxiliar mais escuro
   border: isDarkMode ? "border-slate-700" : "border-blue-200/50",
-  button: isDarkMode ? "bg-slate-700 hover:bg-slate-600 border-slate-600" : "bg-blue-600 hover:bg-blue-700 border-blue-500",
-  buttonSecondary: isDarkMode ? "bg-slate-800 hover:bg-slate-700 border-slate-600" : "bg-white hover:bg-blue-50 border-blue-300",
-})
+  button: isDarkMode
+    ? "bg-slate-700 hover:bg-slate-600 border-slate-600"
+    : "bg-blue-600 hover:bg-blue-700 border-blue-500",
+  buttonSecondary: isDarkMode
+    ? "bg-slate-800 hover:bg-slate-700 border-slate-600"
+    : "bg-white hover:bg-blue-50 border-blue-300",
+});
 
 export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
-  const theme = getThemeClasses()
-  
+  const theme = getThemeClasses();
+
   // Get top gainers and losers
   const topGainers = [...coins]
     .sort(
@@ -93,13 +103,17 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Card className={`${theme.card} border-green-200/50 bg-gradient-to-br from-green-50/80 to-white`}>
+      <Card
+        className="bg-white border-green-400 shadow-lg"
+      >
         <CardHeader>
-          <CardTitle className={`flex items-center gap-2 ${theme.text}`}>
+          <CardTitle className="flex items-center gap-2 text-black font-bold">
             <TrendingUp className="h-5 w-5 text-green-600" />
             <span>Top Gainers</span>
           </CardTitle>
-          <CardDescription className={theme.textMuted}>Maiores altas nas últimas 24h</CardDescription>
+          <CardDescription className="text-black font-medium">
+            Maiores altas nas últimas 24h
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -107,7 +121,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="flex items-center justify-between hover:bg-green-100/50 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between hover:bg-green-50 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -116,15 +130,15 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                     className="w-6 h-6 rounded-full"
                   />
                   <div>
-                    <p className={`font-medium ${theme.text}`}>{coin.name}</p>
-                    <p className={`text-xs ${theme.textLight}`}>
+                    <p className="font-bold text-black">{coin.name}</p>
+                    <p className="text-sm text-black font-medium">
                       {formatPrice(coin.current_price)}
                     </p>
                   </div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="bg-green-100 text-green-700 border-green-300"
+                  className="bg-green-200 text-green-900 border-green-500 font-bold"
                 >
                   +{coin.price_change_percentage_24h.toFixed(2)}%
                 </Badge>
@@ -133,7 +147,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="w-full mt-2 text-green-600 hover:text-green-700 hover:bg-green-100/50"
+              className="w-full mt-2 text-green-800 hover:text-green-900 hover:bg-green-100 font-bold"
             >
               Ver todos <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -141,13 +155,17 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card className={`${theme.card} border-red-200/50 bg-gradient-to-br from-red-50/80 to-white`}>
+      <Card
+        className="bg-white border-red-400 shadow-lg"
+      >
         <CardHeader>
-          <CardTitle className={`flex items-center gap-2 ${theme.text}`}>
+          <CardTitle className="flex items-center gap-2 text-black font-bold">
             <TrendingDown className="h-5 w-5 text-red-600" />
             <span>Top Losers</span>
           </CardTitle>
-          <CardDescription className={theme.textMuted}>Maiores quedas nas últimas 24h</CardDescription>
+          <CardDescription className="text-black font-medium">
+            Maiores quedas nas últimas 24h
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -155,7 +173,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="flex items-center justify-between hover:bg-red-100/50 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between hover:bg-red-50 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -164,15 +182,15 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                     className="w-6 h-6 rounded-full"
                   />
                   <div>
-                    <p className={`font-medium ${theme.text}`}>{coin.name}</p>
-                    <p className={`text-xs ${theme.textLight}`}>
+                    <p className="font-bold text-black">{coin.name}</p>
+                    <p className="text-sm text-black font-medium">
                       {formatPrice(coin.current_price)}
                     </p>
                   </div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="bg-red-100 text-red-700 border-red-300"
+                  className="bg-red-200 text-red-900 border-red-500 font-bold"
                 >
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </Badge>
@@ -181,7 +199,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="w-full mt-2 text-red-600 hover:text-red-700 hover:bg-red-100/50"
+              className="w-full mt-2 text-red-800 hover:text-red-900 hover:bg-red-100 font-bold"
             >
               Ver todos <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -189,9 +207,11 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card className={`${theme.card} border-blue-300/50 bg-gradient-to-br from-blue-100/80 to-white`}>
+      <Card
+        className="bg-white border-blue-400 shadow-lg"
+      >
         <CardHeader>
-          <CardTitle className={`flex items-center gap-2 ${theme.text}`}>
+          <CardTitle className="flex items-center gap-2 text-black font-bold">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -208,7 +228,9 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
             </svg>
             <span>Top Volume</span>
           </CardTitle>
-          <CardDescription className={theme.textMuted}>Maior volume de negociação em 24h</CardDescription>
+          <CardDescription className="text-black font-medium">
+            Maior volume de negociação em 24h
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -216,7 +238,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="flex items-center justify-between hover:bg-blue-100/50 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between hover:bg-blue-50 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -225,24 +247,24 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                     className="w-6 h-6 rounded-full"
                   />
                   <div>
-                    <p className={`font-medium ${theme.text}`}>{coin.name}</p>
-                    <p className={`text-xs ${theme.textLight}`}>
+                    <p className="font-bold text-black">{coin.name}</p>
+                    <p className="text-sm text-black font-medium">
                       {formatPrice(coin.current_price)}
                     </p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className={`text-sm font-medium ${theme.text}`}>
+                  <p className="text-sm font-bold text-black">
                     {formatVolume(coin.total_volume)}
                   </p>
-                  <p className={`text-xs ${theme.textLight}`}>24h</p>
+                  <p className="text-sm text-black font-medium">24h</p>
                 </div>
               </Link>
             ))}
             <Button
               variant="ghost"
               size="sm"
-              className="w-full mt-2 text-blue-600 hover:text-blue-700 hover:bg-blue-100/50"
+              className="w-full mt-2 text-blue-800 hover:text-blue-900 hover:bg-blue-100 font-bold"
             >
               Ver todos <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

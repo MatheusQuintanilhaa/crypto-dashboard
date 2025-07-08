@@ -1,7 +1,7 @@
-import type { Coin, CoinDetails } from "../types/crypto"
+import type { Coin, CoinDetails } from "../types/crypto";
 
 // Usando API alternativa que funciona melhor com CORS
-const BASE_URL = "https://api.coingecko.com/api/v3"
+const BASE_URL = "https://api.coingecko.com/api/v3";
 
 class CryptoAPI {
   async getCoins(): Promise<Coin[]> {
@@ -11,39 +11,40 @@ class CryptoAPI {
         `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h`,
         {
           headers: {
-            'Accept': 'application/json',
+            Accept: "application/json",
           },
         }
-      )
+      );
 
       // Se der erro de CORS, usa proxy
       if (!response.ok) {
-        console.log("Tentando com proxy...")
+        console.log("Tentando com proxy...");
         response = await fetch(
           `https://api.allorigins.win/get?url=${encodeURIComponent(
             `${BASE_URL}/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h`
           )}`
-        )
-        
+        );
+
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
-        const proxyData = await response.json()
-        return JSON.parse(proxyData.contents)
+
+        const proxyData = await response.json();
+        return JSON.parse(proxyData.contents);
       }
 
-      const data = await response.json()
-      return data
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error fetching coins:", error)
+      console.error("Error fetching coins:", error);
       // Fallback: dados mock para demonstração
       return [
         {
           id: "bitcoin",
           symbol: "btc",
           name: "Bitcoin",
-          image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+          image:
+            "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
           current_price: 45000,
           market_cap: 850000000000,
           market_cap_rank: 1,
@@ -65,13 +66,14 @@ class CryptoAPI {
           atl_change_percentage: 66282.1,
           atl_date: "2013-07-06T00:00:00.000Z",
           roi: null,
-          last_updated: new Date().toISOString()
+          last_updated: new Date().toISOString(),
         },
         {
           id: "ethereum",
-          symbol: "eth", 
+          symbol: "eth",
           name: "Ethereum",
-          image: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+          image:
+            "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
           current_price: 3000,
           market_cap: 360000000000,
           market_cap_rank: 2,
@@ -93,13 +95,14 @@ class CryptoAPI {
           atl_change_percentage: 692662.4,
           atl_date: "2015-10-20T00:00:00.000Z",
           roi: null,
-          last_updated: new Date().toISOString()
+          last_updated: new Date().toISOString(),
         },
         {
           id: "tether",
           symbol: "usdt",
           name: "Tether",
-          image: "https://assets.coingecko.com/coins/images/325/large/Tether.png",
+          image:
+            "https://assets.coingecko.com/coins/images/325/large/Tether.png",
           current_price: 1.0,
           market_cap: 95000000000,
           market_cap_rank: 3,
@@ -121,9 +124,9 @@ class CryptoAPI {
           atl_change_percentage: 74.6,
           atl_date: "2015-03-02T00:00:00.000Z",
           roi: null,
-          last_updated: new Date().toISOString()
-        }
-      ]
+          last_updated: new Date().toISOString(),
+        },
+      ];
     }
   }
 
@@ -133,28 +136,28 @@ class CryptoAPI {
         `${BASE_URL}/coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`,
         {
           headers: {
-            'Accept': 'application/json',
+            Accept: "application/json",
           },
         }
-      )
+      );
 
       if (!response.ok) {
         if (response.status === 404) {
-          throw new Error("Moeda não encontrada")
+          throw new Error("Moeda não encontrada");
         }
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json()
-      return data
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error fetching coin details:", error)
+      console.error("Error fetching coin details:", error);
       if (error instanceof Error) {
-        throw error
+        throw error;
       }
-      throw new Error("Erro ao carregar detalhes da moeda")
+      throw new Error("Erro ao carregar detalhes da moeda");
     }
   }
 }
 
-export const cryptoApi = new CryptoAPI()
+export const cryptoApi = new CryptoAPI();
