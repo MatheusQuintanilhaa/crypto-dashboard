@@ -1,36 +1,35 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Heart, TrendingUp, TrendingDown, ExternalLink } from "lucide-react"
-import { useFavorites } from "@/hooks/use-favorites"
-import type { Coin } from "@/types/crypto"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Heart, TrendingUp, TrendingDown, ExternalLink } from "lucide-react";
+import { useFavorites } from "@/hooks/use-favorites";
+import type { Coin } from "@/types/crypto";
 
 interface CoinCardProps {
-  coin: Coin
+  coin: Coin;
 }
 
 export function CoinCard({ coin }: CoinCardProps) {
-  const { favorites, addFavorite, removeFavorite } = useFavorites()
-  const [imageError, setImageError] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const [imageError, setImageError] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const isFavorite = favorites.includes(coin.id)
-  const isPositive = coin.price_change_percentage_24h > 0
+  const isFavorite = favorites.includes(coin.id);
+  const isPositive = coin.price_change_percentage_24h > 0;
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (isFavorite) {
-      removeFavorite(coin.id)
+      removeFavorite(coin.id);
     } else {
-      addFavorite(coin.id)
+      addFavorite(coin.id);
     }
-  }
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("pt-BR", {
@@ -38,34 +37,38 @@ export function CoinCard({ coin }: CoinCardProps) {
       currency: "USD",
       minimumFractionDigits: 2,
       maximumFractionDigits: price < 1 ? 6 : 2,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   const formatMarketCap = (marketCap: number) => {
     if (marketCap >= 1e12) {
-      return `$${(marketCap / 1e12).toFixed(2)}T`
+      return `$${(marketCap / 1e12).toFixed(2)}T`;
     }
     if (marketCap >= 1e9) {
-      return `$${(marketCap / 1e9).toFixed(2)}B`
+      return `$${(marketCap / 1e9).toFixed(2)}B`;
     }
     if (marketCap >= 1e6) {
-      return `$${(marketCap / 1e6).toFixed(2)}M`
+      return `$${(marketCap / 1e6).toFixed(2)}M`;
     }
-    return `$${marketCap.toLocaleString()}`
-  }
+    return `$${marketCap.toLocaleString()}`;
+  };
 
   return (
-    <Link href={`/coin/${coin.id}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+    <Link
+      to={`/coin/${coin.id}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <Card
         className={`relative overflow-hidden transition-all duration-300 bg-white dark:bg-card-bg border-gray-200 dark:border-card-border hover:border-gray-300 dark:hover:border-card-border-hover backdrop-blur-sm hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-primary/5 hover:-translate-y-1 ${
-          isPositive
-            ? "hover:shadow-green-500/10"
-            : "hover:shadow-red-500/10"
+          isPositive ? "hover:shadow-green-500/10" : "hover:shadow-red-500/10"
         }`}
       >
         {/* Background gradient effect */}
         <div
-          className={`absolute inset-0 opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-10" : ""} ${
+          className={`absolute inset-0 opacity-0 transition-opacity duration-300 ${
+            isHovered ? "opacity-10" : ""
+          } ${
             isPositive
               ? "bg-gradient-to-r from-green-400/20 to-blue-400/20"
               : "bg-gradient-to-r from-red-400/20 to-orange-400/20"
@@ -76,7 +79,7 @@ export function CoinCard({ coin }: CoinCardProps) {
           <div className="flex items-center space-x-3">
             {!imageError ? (
               <div className="relative">
-                <Image
+                <img
                   src={coin.image || "/placeholder.svg"}
                   alt={coin.name}
                   width={36}
@@ -85,21 +88,31 @@ export function CoinCard({ coin }: CoinCardProps) {
                   onError={() => setImageError(true)}
                 />
                 <div
-                  className={`absolute inset-0 rounded-full ${isHovered ? "animate-ping" : ""} ${
+                  className={`absolute inset-0 rounded-full ${
+                    isHovered ? "animate-ping" : ""
+                  } ${
                     isPositive ? "bg-green-400/10" : "bg-red-400/10"
                   } opacity-0 ${isHovered ? "opacity-100" : ""}`}
                 />
               </div>
             ) : (
               <div className="w-9 h-9 bg-muted rounded-full flex items-center justify-center">
-                <span className="text-sm font-bold text-muted-foreground">{coin.symbol.charAt(0).toUpperCase()}</span>
+                <span className="text-sm font-bold text-muted-foreground">
+                  {coin.symbol.charAt(0).toUpperCase()}
+                </span>
               </div>
             )}
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{coin.name}</h3>
+              <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {coin.name}
+              </h3>
               <div className="flex items-center gap-1">
-                <p className="text-sm text-gray-600 dark:text-gray-400 uppercase">{coin.symbol}</p>
-                <span className="text-xs text-gray-500 dark:text-gray-500">#{coin.market_cap_rank}</span>
+                <p className="text-sm text-gray-600 dark:text-gray-400 uppercase">
+                  {coin.symbol}
+                </p>
+                <span className="text-xs text-gray-500 dark:text-gray-500">
+                  #{coin.market_cap_rank}
+                </span>
               </div>
             </div>
           </div>
@@ -114,38 +127,54 @@ export function CoinCard({ coin }: CoinCardProps) {
             } transition-colors`}
           >
             <Heart className={`h-4 w-4 ${isFavorite ? "fill-current" : ""}`} />
-            <span className="sr-only">{isFavorite ? "Remove from favorites" : "Add to favorites"}</span>
+            <span className="sr-only">
+              {isFavorite ? "Remove from favorites" : "Add to favorites"}
+            </span>
           </Button>
         </CardHeader>
         <CardContent className="relative z-10">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-lg font-bold text-gray-900 dark:text-white">{formatPrice(coin.current_price)}</span>
+              <span className="text-lg font-bold text-gray-900 dark:text-white">
+                {formatPrice(coin.current_price)}
+              </span>
               <div
                 className={`flex items-center space-x-1 px-2 py-1 rounded-full font-semibold ${
-                  isPositive 
-                    ? "text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30" 
+                  isPositive
+                    ? "text-green-700 bg-green-100 dark:text-green-400 dark:bg-green-900/30"
                     : "text-red-700 bg-red-100 dark:text-red-400 dark:bg-red-900/30"
                 }`}
               >
-                {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                <span className="text-xs font-medium">{Math.abs(coin.price_change_percentage_24h).toFixed(2)}%</span>
+                {isPositive ? (
+                  <TrendingUp className="h-3 w-3" />
+                ) : (
+                  <TrendingDown className="h-3 w-3" />
+                )}
+                <span className="text-xs font-medium">
+                  {Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                </span>
               </div>
             </div>
             <div className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
               <div className="flex justify-between">
                 <span>Market Cap:</span>
-                <span className="font-medium">{formatMarketCap(coin.market_cap)}</span>
+                <span className="font-medium">
+                  {formatMarketCap(coin.market_cap)}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>Volume 24h:</span>
-                <span className="font-medium">{formatMarketCap(coin.total_volume)}</span>
+                <span className="font-medium">
+                  {formatMarketCap(coin.total_volume)}
+                </span>
               </div>
             </div>
 
             {/* View details button that appears on hover */}
             <div
-              className={`absolute inset-0 bg-gradient-to-t from-white/90 dark:from-gray-900/90 via-transparent to-transparent flex items-end justify-center p-4 opacity-0 transition-opacity duration-300 ${isHovered ? "opacity-100" : ""}`}
+              className={`absolute inset-0 bg-gradient-to-t from-white/90 dark:from-gray-900/90 via-transparent to-transparent flex items-end justify-center p-4 opacity-0 transition-opacity duration-300 ${
+                isHovered ? "opacity-100" : ""
+              }`}
             >
               <Button
                 variant="outline"
@@ -159,5 +188,5 @@ export function CoinCard({ coin }: CoinCardProps) {
         </CardContent>
       </Card>
     </Link>
-  )
+  );
 }
