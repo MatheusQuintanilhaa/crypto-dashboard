@@ -1,0 +1,19 @@
+# Build files
+dist/
+node_modules/
+.env
+.env.local
+.env.production
+.vscode/
+.git/
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# Backup files
+*-backup.*
+*-optimized.*
+
+# OS files
+.DS_Store
+Thumbs.db
