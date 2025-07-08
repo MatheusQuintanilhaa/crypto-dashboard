@@ -1,0 +1,30 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="8" cy="8" r="7.5" fill="url(#grad1)" stroke="#1e40af" stroke-width="1"/>
+  
+  <!-- Simplified crypto symbol -->
+  <g transform="translate(4, 3)">
+    <!-- Vertical lines -->
+    <rect x="2.5" y="0" width="0.7" height="2" fill="white"/>
+    <rect x="4.8" y="0" width="0.7" height="2" fill="white"/>
+    <rect x="2.5" y="8" width="0.7" height="2" fill="white"/>
+    <rect x="4.8" y="8" width="0.7" height="2" fill="white"/>
+    
+    <!-- Main B shape -->
+    <path d="M1 2 L1 8 L5 8 C6.2 8 7 7.2 7 6.2 C7 5.6 6.6 5.1 6 4.9 C6.4 4.7 6.6 4.2 6.6 3.8 C6.6 2.8 5.8 2 4.8 2 Z M2.2 3 L4.5 3 C5 3 5.2 3.2 5.2 3.8 C5.2 4.2 5 4.5 4.5 4.5 L2.2 4.5 Z M2.2 5.5 L4.8 5.5 C5.2 5.5 5.5 5.8 5.5 6.2 C5.5 6.8 5.2 7 4.8 7 L2.2 7 Z" fill="white"/>
+  </g>
+  
+  <!-- Small chart element -->
+  <g opacity="0.7">
+    <rect x="11" y="7" width="0.5" height="3" fill="white" rx="0.2"/>
+    <rect x="12" y="6" width="0.5" height="4" fill="white" rx="0.2"/>
+    <rect x="13" y="8" width="0.5" height="2" fill="white" rx="0.2"/>
+  </g>
+</svg>
