@@ -17,7 +17,22 @@ interface MarketOverviewProps {
   isLoading: boolean;
 }
 
+// Theme helper functions
+const getThemeClasses = (isDarkMode: boolean = false) => ({
+  background: isDarkMode ? "bg-slate-900" : "bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100",
+  card: isDarkMode ? "bg-slate-800/90 border-slate-700" : "bg-gradient-to-br from-white to-blue-50 border-blue-200/30 shadow-md",
+  cardHover: isDarkMode ? "hover:bg-slate-700/90" : "hover:bg-gradient-to-br hover:from-white hover:to-blue-100",
+  text: isDarkMode ? "text-slate-100" : "text-slate-800",
+  textMuted: isDarkMode ? "text-slate-400" : "text-slate-600",
+  textLight: isDarkMode ? "text-slate-300" : "text-slate-500",
+  border: isDarkMode ? "border-slate-700" : "border-blue-200/50",
+  button: isDarkMode ? "bg-slate-700 hover:bg-slate-600 border-slate-600" : "bg-blue-600 hover:bg-blue-700 border-blue-500",
+  buttonSecondary: isDarkMode ? "bg-slate-800 hover:bg-slate-700 border-slate-600" : "bg-white hover:bg-blue-50 border-blue-300",
+})
+
 export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
+  const theme = getThemeClasses()
+  
   // Get top gainers and losers
   const topGainers = [...coins]
     .sort(
@@ -55,17 +70,17 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <Card key={i} className="bg-gray-800/50 border-gray-700">
+          <Card key={i} className={theme.card}>
             <CardHeader>
-              <Skeleton className="h-6 w-32 bg-gray-700" />
-              <Skeleton className="h-4 w-48 bg-gray-700" />
+              <Skeleton className={`h-6 w-32 bg-blue-100/50`} />
+              <Skeleton className={`h-4 w-48 bg-blue-100/50`} />
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5].map((j) => (
                   <div key={j} className="flex items-center justify-between">
-                    <Skeleton className="h-8 w-24 bg-gray-700" />
-                    <Skeleton className="h-6 w-20 bg-gray-700" />
+                    <Skeleton className={`h-8 w-24 bg-blue-100/50`} />
+                    <Skeleton className={`h-6 w-20 bg-blue-100/50`} />
                   </div>
                 ))}
               </div>
@@ -78,13 +93,13 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Card className="bg-gradient-to-br from-green-900/20 to-green-700/10 border-green-800/30 backdrop-blur-sm">
+      <Card className={`${theme.card} border-green-200/50 bg-gradient-to-br from-green-50/80 to-white`}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-green-500" />
+          <CardTitle className={`flex items-center gap-2 ${theme.text}`}>
+            <TrendingUp className="h-5 w-5 text-green-600" />
             <span>Top Gainers</span>
           </CardTitle>
-          <CardDescription>Maiores altas nas últimas 24h</CardDescription>
+          <CardDescription className={theme.textMuted}>Maiores altas nas últimas 24h</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -92,7 +107,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="flex items-center justify-between hover:bg-green-900/20 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between hover:bg-green-100/50 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -101,15 +116,15 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                     className="w-6 h-6 rounded-full"
                   />
                   <div>
-                    <p className="font-medium text-white">{coin.name}</p>
-                    <p className="text-xs text-gray-200">
+                    <p className={`font-medium ${theme.text}`}>{coin.name}</p>
+                    <p className={`text-xs ${theme.textLight}`}>
                       {formatPrice(coin.current_price)}
                     </p>
                   </div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="bg-green-900/30 text-green-400 border-green-700"
+                  className="bg-green-100 text-green-700 border-green-300"
                 >
                   +{coin.price_change_percentage_24h.toFixed(2)}%
                 </Badge>
@@ -118,7 +133,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="w-full mt-2 text-green-400 hover:text-green-300 hover:bg-green-900/30"
+              className="w-full mt-2 text-green-600 hover:text-green-700 hover:bg-green-100/50"
             >
               Ver todos <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -126,13 +141,13 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card className="bg-gradient-to-br from-red-900/20 to-red-700/10 border-red-800/30 backdrop-blur-sm">
+      <Card className={`${theme.card} border-red-200/50 bg-gradient-to-br from-red-50/80 to-white`}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <TrendingDown className="h-5 w-5 text-red-500" />
+          <CardTitle className={`flex items-center gap-2 ${theme.text}`}>
+            <TrendingDown className="h-5 w-5 text-red-600" />
             <span>Top Losers</span>
           </CardTitle>
-          <CardDescription>Maiores quedas nas últimas 24h</CardDescription>
+          <CardDescription className={theme.textMuted}>Maiores quedas nas últimas 24h</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -140,7 +155,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="flex items-center justify-between hover:bg-red-900/20 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between hover:bg-red-100/50 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -149,15 +164,15 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                     className="w-6 h-6 rounded-full"
                   />
                   <div>
-                    <p className="font-medium text-white">{coin.name}</p>
-                    <p className="text-xs text-gray-200">
+                    <p className={`font-medium ${theme.text}`}>{coin.name}</p>
+                    <p className={`text-xs ${theme.textLight}`}>
                       {formatPrice(coin.current_price)}
                     </p>
                   </div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="bg-red-900/30 text-red-400 border-red-700"
+                  className="bg-red-100 text-red-700 border-red-300"
                 >
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </Badge>
@@ -166,7 +181,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="w-full mt-2 text-red-400 hover:text-red-300 hover:bg-red-900/30"
+              className="w-full mt-2 text-red-600 hover:text-red-700 hover:bg-red-100/50"
             >
               Ver todos <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -174,9 +189,9 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card className="bg-gradient-to-br from-blue-900/20 to-blue-700/10 border-blue-800/30 backdrop-blur-sm">
+      <Card className={`${theme.card} border-blue-300/50 bg-gradient-to-br from-blue-100/80 to-white`}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className={`flex items-center gap-2 ${theme.text}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -187,13 +202,13 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-blue-500"
+              className="text-blue-600"
             >
               <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" />
             </svg>
             <span>Top Volume</span>
           </CardTitle>
-          <CardDescription>Maior volume de negociação em 24h</CardDescription>
+          <CardDescription className={theme.textMuted}>Maior volume de negociação em 24h</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -201,7 +216,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
               <Link
                 to={`/coin/${coin.id}`}
                 key={coin.id}
-                className="flex items-center justify-between hover:bg-blue-900/20 p-2 rounded-lg transition-colors"
+                className="flex items-center justify-between hover:bg-blue-100/50 p-2 rounded-lg transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <img
@@ -210,24 +225,24 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
                     className="w-6 h-6 rounded-full"
                   />
                   <div>
-                    <p className="font-medium text-white">{coin.name}</p>
-                    <p className="text-xs text-gray-200">
+                    <p className={`font-medium ${theme.text}`}>{coin.name}</p>
+                    <p className={`text-xs ${theme.textLight}`}>
                       {formatPrice(coin.current_price)}
                     </p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-medium text-white">
+                  <p className={`text-sm font-medium ${theme.text}`}>
                     {formatVolume(coin.total_volume)}
                   </p>
-                  <p className="text-xs text-gray-200">24h</p>
+                  <p className={`text-xs ${theme.textLight}`}>24h</p>
                 </div>
               </Link>
             ))}
             <Button
               variant="ghost"
               size="sm"
-              className="w-full mt-2 text-blue-400 hover:text-blue-300 hover:bg-blue-900/30"
+              className="w-full mt-2 text-blue-600 hover:text-blue-700 hover:bg-blue-100/50"
             >
               Ver todos <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
