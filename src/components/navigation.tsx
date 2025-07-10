@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Home, Heart, TrendingUp, Moon, Sun, Menu } from "lucide-react"
+import { Home, Heart, TrendingUp, Moon, Sun, Menu, Wallet } from "lucide-react"
 import { Button } from "./ui/button"
 import { useFavorites } from "../hooks/use-favorites"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
@@ -26,6 +26,7 @@ export function Navigation() {
 
   const navItems = [
     { href: "/", label: "Home", icon: Home },
+    { href: "/portfolio", label: "Portfolio", icon: Wallet },
     { href: "/favorites", label: "Favoritos", icon: Heart, count: favorites.length },
   ]
 

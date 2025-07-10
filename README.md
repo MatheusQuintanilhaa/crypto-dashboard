@@ -1,6 +1,6 @@
 # 🚀 Crypto Dashboard
 
-Dashboard profissional para acompanhar preços e tendências das principais criptomoedas do mercado em tempo real.
+Dashboard profissional completo para acompanhar preços, tendências e gerenciar portfolio de criptomoedas em tempo real.
 
 ![Crypto Dashboard](https://img.shields.io/badge/React-18.2.0-blue)
 ![Vite](https://img.shields.io/badge/Vite-5.0.0-purple)
@@ -9,25 +9,55 @@ Dashboard profissional para acompanhar preços e tendências das principais crip
 
 ## ✨ Funcionalidades
 
-- 📊 **Dashboard Completo** - Visão geral do mercado de criptomoedas
+### 📊 **Dashboard Principal**
+- 📈 **Market Overview** - Market cap global, volume 24h, dominância BTC
 - 💰 **Lista de Moedas** - Top 50 criptomoedas por market cap
 - 🔍 **Busca e Filtros** - Busque por nome/símbolo e filtre por performance
-- ❤️ **Sistema de Favoritos** - Salve suas moedas favoritas
-- 📱 **Design Responsivo** - Funciona perfeitamente em mobile e desktop
-- 🌙 **Tema Dark/Light** - Alterne entre temas com persistência
-- 📈 **Detalhes Completos** - Informações detalhadas de cada moeda
-- 🔄 **Dados em Tempo Real** - Integração com API CoinGecko
+- 📱 **Design Responsivo** - Mobile-first design otimizado
 
-## 🛠️ Tecnologias
+### 💼 **Portfolio Tracker** ⭐
+- 🎯 **Gerenciar Investimentos** - Adicione suas moedas com quantidade e preço
+- 📊 **P&L em Tempo Real** - Lucro/prejuízo total e percentual
+- 💹 **Preço Médio** - Cálculo automático de preço médio ponderado
+- 📈 **Estatísticas Completas** - Valor total, investido, P&L por moeda
 
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
-- **UI Components**: Radix UI
-- **State Management**: React Query (TanStack Query)
-- **Routing**: React Router DOM
-- **Icons**: Lucide React
-- **API**: CoinGecko API
+### 📈 **Gráficos Interativos** ⭐
+- 🕐 **Tempo Real** - Gráficos com atualização automática (30s)
+- � **Múltiplos Períodos** - 1D, 7D, 30D, 90D, 1Y
+- 🎨 **Visualizações** - Linha e área com gradientes
+- 📱 **Responsivo** - Otimizado para todos os dispositivos
+
+### 🔧 **Funcionalidades Avançadas**
+- ❤️ **Sistema de Favoritos** - Salve e organize suas moedas favoritas
+- 🌙 **Tema Dark/Light** - Alternância com persistência local
+- � **Detalhes Completos** - Informações técnicas e fundamentais
+- 🔄 **API Robusta** - Fallback inteligente com dados mock
+- 🎯 **Animações** - Transições suaves com Framer Motion
+- 🔔 **Notificações** - Toast notifications para feedback
+
+## 🛠️ Stack Tecnológica
+
+### **Frontend Core**
+- **React 18** + **TypeScript** - Base moderna e type-safe
+- **Vite** - Build tool ultra-rápido
+- **Tailwind CSS** - Styling utility-first
+- **Framer Motion** - Animações profissionais
+
+### **UI/UX**
+- **Radix UI** - Componentes acessíveis e headless
+- **Lucide React** - Ícones modernos e consistentes
+- **React Hot Toast** - Notificações elegantes
+- **Recharts** - Gráficos responsivos e interativos
+
+### **State & Data**
+- **React Query (TanStack Query)** - Cache e sincronização de dados
+- **React Router DOM** - Roteamento client-side
+- **Custom Hooks** - Lógica reutilizável e organizada
+
+### **API & Integração**
+- **CoinGecko API** - Dados em tempo real de criptomoedas
+- **LocalStorage** - Persistência de favoritos e portfolio
+- **Fallback System** - Proxy + dados mock para alta disponibilidade
 
 ## 🚀 Instalação
 
