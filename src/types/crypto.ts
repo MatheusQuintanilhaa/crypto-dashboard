@@ -101,3 +101,17 @@ export interface CoinDetails {
     }
   }
 }
+
+export interface PriceHistory {
+  prices: [number, number][]; // [timestamp, price]
+  market_caps: [number, number][];
+  total_volumes: [number, number][];
+}
+
+export interface ChartDataPoint {
+  timestamp: number;
+  date: string;
+  price: number;
+  volume: number;
+  market_cap: number;
+}

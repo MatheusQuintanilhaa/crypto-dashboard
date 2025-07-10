@@ -25,6 +25,7 @@ import { useCoinDetails } from "../hooks/use-coin-details";
 import { useFavorites } from "../hooks/use-favorites";
 import { Skeleton } from "../components/ui/skeleton";
 import { Alert, AlertDescription } from "../components/ui/alert";
+import { PriceChart } from "../components/price-chart";
 import {
   Tabs,
   TabsContent,
@@ -318,6 +319,7 @@ export default function CoinDetailsPage() {
           <Tabs defaultValue="overview" className="space-y-6">
             <TabsList className="bg-gradient-to-br from-white to-blue-50 border border-blue-200/50">
               <TabsTrigger value="overview">Visão Geral</TabsTrigger>
+              <TabsTrigger value="chart">Gráfico</TabsTrigger>
               <TabsTrigger value="markets">Mercados</TabsTrigger>
               <TabsTrigger value="about">Sobre</TabsTrigger>
             </TabsList>
@@ -563,6 +565,15 @@ export default function CoinDetailsPage() {
                   </CardContent>
                 </Card>
               </div>
+            </TabsContent>
+
+            <TabsContent value="chart" className="space-y-6">
+              <PriceChart
+                coinId={coin.id}
+                coinName={coin.name}
+                currentPrice={coin.market_data.current_price.usd}
+                priceChange24h={coin.market_data.price_change_percentage_24h}
+              />
             </TabsContent>
 
             <TabsContent value="markets" className="space-y-6">
