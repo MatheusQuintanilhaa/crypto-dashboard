@@ -39,10 +39,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../components/ui/tooltip";
+import { useTheme } from "../contexts/theme-context";
 
 export default function CoinDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { theme } = useTheme();
   const coinId = id as string;
 
   const { data: coin, isLoading, error, refetch } = useCoinDetails(coinId);
@@ -149,19 +151,27 @@ export default function CoinDetailsPage() {
   const isPositive = coin.market_data.price_change_percentage_24h > 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100 text-slate-800">
+    <div className={`min-h-screen ${
+      theme === "dark" ? "crypto-background-dark" : "crypto-background-light"
+    } text-foreground`}>
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               onClick={() => navigate(-1)}
-              className="text-slate-600 hover:text-slate-800 p-2"
+              className={`p-2 ${
+                theme === "dark" 
+                  ? "text-gray-300 hover:text-white" 
+                  : "text-slate-600 hover:text-slate-800"
+              }`}
             >
               <ArrowLeft className="h-5 w-5" />
               <span className="sr-only">Voltar</span>
             </Button>
-            <h2 className="text-lg font-medium text-slate-600">
+            <h2 className={`text-lg font-medium ${
+              theme === "dark" ? "text-gray-300" : "text-slate-600"
+            }`}>
               Detalhes da Moeda
             </h2>
           </div>
@@ -174,7 +184,11 @@ export default function CoinDetailsPage() {
                     variant="outline"
                     size="sm"
                     onClick={handleShare}
-                    className="bg-white hover:bg-blue-50 border-blue-300 text-slate-600 hover:text-slate-800"
+                    className={`${
+                      theme === "dark"
+                        ? "bg-gray-800 hover:bg-gray-700 border-gray-600 text-gray-300 hover:text-white"
+                        : "bg-white hover:bg-blue-50 border-blue-300 text-slate-600 hover:text-slate-800"
+                    }`}
                   >
                     <Share2 className="h-4 w-4 mr-2" />
                     {copied ? "Copiado!" : "Compartilhar"}
@@ -193,6 +207,8 @@ export default function CoinDetailsPage() {
               className={
                 isFavorite
                   ? "bg-red-600 hover:bg-red-700 text-white"
+                  : theme === "dark"
+                  ? "bg-gray-800 hover:bg-gray-700 border-gray-600 text-gray-300 hover:text-white"
                   : "bg-white hover:bg-blue-50 border-blue-300 text-slate-600 hover:text-slate-800"
               }
             >
@@ -208,7 +224,11 @@ export default function CoinDetailsPage() {
           {/* Header with coin info */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-blue-400/10 rounded-xl blur-xl opacity-50" />
-            <div className="relative backdrop-blur-sm bg-gradient-to-br from-white to-blue-50 border-blue-200/30 shadow-md rounded-xl p-6">
+            <div className={`relative backdrop-blur-sm ${
+              theme === "dark" 
+                ? "crypto-card-glass-dark" 
+                : "crypto-card-glass-light"
+            } shadow-md rounded-xl p-6`}>
               <div className="flex flex-col md:flex-row md:items-center gap-6">
                 <div className="flex items-center gap-4">
                   {!imageError ? (
@@ -222,20 +242,32 @@ export default function CoinDetailsPage() {
                       />
                     </div>
                   ) : (
-                    <div className="w-20 h-20 bg-gradient-to-br from-white to-blue-50 border-blue-200/30 rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-bold text-slate-800">
+                    <div className={`w-20 h-20 ${
+                      theme === "dark"
+                        ? "bg-gradient-to-br from-gray-800 to-gray-700 border-gray-600/30"
+                        : "bg-gradient-to-br from-white to-blue-50 border-blue-200/30"
+                    } rounded-full flex items-center justify-center`}>
+                      <span className={`text-2xl font-bold ${
+                        theme === "dark" ? "text-gray-200" : "text-slate-800"
+                      }`}>
                         {coin.symbol.charAt(0).toUpperCase()}
                       </span>
                     </div>
                   )}
                   <div>
                     <div className="flex items-center gap-2">
-                      <h1 className="text-3xl md:text-4xl font-bold text-slate-800">
+                      <h1 className={`text-3xl md:text-4xl font-bold ${
+                        theme === "dark" ? "text-white" : "text-slate-800"
+                      }`}>
                         {coin.name}
                       </h1>
                       <Badge
                         variant="outline"
-                        className="text-xs font-medium uppercase border-blue-200/50 bg-gradient-to-br from-white to-blue-50"
+                        className={`text-xs font-medium uppercase ${
+                          theme === "dark"
+                            ? "border-gray-600/50 bg-gradient-to-br from-gray-800 to-gray-700"
+                            : "border-blue-200/50 bg-gradient-to-br from-white to-blue-50"
+                        }`}
                       >
                         {coin.symbol.toUpperCase()}
                       </Badge>
@@ -252,7 +284,11 @@ export default function CoinDetailsPage() {
                           href={coin.links.homepage[0]}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-slate-600 hover:text-blue-600 transition-colors"
+                          className={`transition-colors ${
+                            theme === "dark" 
+                              ? "text-gray-400 hover:text-blue-400" 
+                              : "text-slate-600 hover:text-blue-600"
+                          }`}
                         >
                           <Globe className="h-4 w-4" />
                           <span className="sr-only">Website</span>
@@ -263,7 +299,11 @@ export default function CoinDetailsPage() {
                           href={coin.links.repos_url.github[0]}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-slate-600 hover:text-blue-600 transition-colors"
+                          className={`transition-colors ${
+                            theme === "dark" 
+                              ? "text-gray-400 hover:text-blue-400" 
+                              : "text-slate-600 hover:text-blue-600"
+                          }`}
                         >
                           <Github className="h-4 w-4" />
                           <span className="sr-only">GitHub</span>
@@ -274,7 +314,11 @@ export default function CoinDetailsPage() {
                           href={`https://twitter.com/${coin.links.twitter_screen_name}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-slate-600 hover:text-blue-600 transition-colors"
+                          className={`transition-colors ${
+                            theme === "dark" 
+                              ? "text-gray-400 hover:text-blue-400" 
+                              : "text-slate-600 hover:text-blue-600"
+                          }`}
                         >
                           <Twitter className="h-4 w-4" />
                           <span className="sr-only">Twitter</span>
@@ -286,7 +330,9 @@ export default function CoinDetailsPage() {
 
                 <div className="md:ml-auto">
                   <div className="flex flex-col items-start md:items-end">
-                    <div className="text-3xl md:text-4xl font-bold text-slate-800">
+                    <div className={`text-3xl md:text-4xl font-bold ${
+                      theme === "dark" ? "text-white" : "text-slate-800"
+                    }`}>
                       {formatPrice(coin.market_data.current_price.usd)}
                     </div>
                     <div
@@ -307,7 +353,9 @@ export default function CoinDetailsPage() {
                         ).toFixed(2)}
                         %
                       </span>
-                      <span className="text-sm text-slate-500">(24h)</span>
+                      <span className={`text-sm ${
+                        theme === "dark" ? "text-gray-400" : "text-slate-500"
+                      }`}>(24h)</span>
                     </div>
                   </div>
                 </div>
@@ -317,7 +365,11 @@ export default function CoinDetailsPage() {
 
           {/* Tabs for different sections */}
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className="bg-gradient-to-br from-white to-blue-50 border border-blue-200/50">
+            <TabsList className={`${
+              theme === "dark" 
+                ? "crypto-card-glass-dark border border-gray-600/50" 
+                : "crypto-card-glass-light border border-blue-200/50"
+            }`}>
               <TabsTrigger value="overview">Visão Geral</TabsTrigger>
               <TabsTrigger value="chart">Gráfico</TabsTrigger>
               <TabsTrigger value="markets">Mercados</TabsTrigger>
@@ -390,10 +442,14 @@ export default function CoinDetailsPage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-xl font-bold text-slate-800">
+                    <p className={`text-xl font-bold ${
+                      theme === "dark" ? "text-white" : "text-slate-800"
+                    }`}>
                       {formatLargeNumber(coin.market_data.total_volume.usd)}
                     </p>
-                    <p className="text-sm text-slate-500 mt-1">
+                    <p className={`text-sm mt-1 ${
+                      theme === "dark" ? "text-gray-400" : "text-slate-500"
+                    }`}>
                       {(
                         (coin.market_data.total_volume.usd /
                           coin.market_data.market_cap.usd) *
