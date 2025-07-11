@@ -278,13 +278,4 @@ Este projeto utiliza a [CoinGecko API](https://www.coingecko.com/en/api) para ob
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 🙏 Agradecimentos
 
-- [CoinGecko](https://www.coingecko.com/) pela API gratuita
-- [Radix UI](https://www.radix-ui.com/) pelos componentes acessíveis
-- [Tailwind CSS](https://tailwindcss.com/) pelo sistema de design
-- [Lucide](https://lucide.dev/) pelos ícones
-
----
-
-Desenvolvido com ❤️ usando React + Vite
