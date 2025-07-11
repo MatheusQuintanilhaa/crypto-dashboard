@@ -62,7 +62,9 @@ export function DashboardHeader() {
           }`}
         >
           <div className="flex flex-col items-center text-center mb-6">
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className={`text-3xl md:text-4xl font-bold ${
+              theme === "dark" ? "text-blue-400" : "text-blue-600"
+            }`} style={{ lineHeight: '1.2', padding: '0.1em 0' }}>
               Crypto Dashboard
             </h1>
             <p className="text-muted-foreground mt-2">Acompanhe as principais criptomoedas do mercado em tempo real</p>
