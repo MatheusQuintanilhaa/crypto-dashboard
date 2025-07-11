@@ -26,7 +26,7 @@ import { useCoinDetails } from "../hooks/use-coin-details";
 import { useFavorites } from "../hooks/use-favorites";
 import { Skeleton } from "../components/ui/skeleton";
 import { Alert, AlertDescription } from "../components/ui/alert";
-import { PriceChart } from "../components/price-chart";
+import { PriceChart } from "../components";
 import {
   Tabs,
   TabsContent,
