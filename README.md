@@ -92,74 +92,76 @@ Dashboard profissional completo para acompanhar preços, tendências e gerenciar
 
 ## 📁 Estrutura do Projeto
 
-\`\`\`
+```tree
 crypto-dashboard/
-├── 📁 src/ # Código fonte principal
-│ ├── 📁 components/ # Componentes React reutilizáveis
-│ │ ├── 📁 ui/ # Componentes UI base (Radix UI)
-│ │ │ ├── button.tsx # Botão customizado
-│ │ │ ├── card.tsx # Container de card
-│ │ │ ├── dialog.tsx # Modal/Dialog
-│ │ │ ├── input.tsx # Campo de entrada
-│ │ │ └── ... # Outros componentes UI
-│ │ ├── coin-card.tsx # Card individual de moeda
-│ │ ├── coin-list.tsx # Lista/grid de moedas
-│ │ ├── coin-row.tsx # Linha da tabela de moedas
-│ │ ├── dashboard-header.tsx # Cabeçalho do dashboard
-│ │ ├── filter-buttons.tsx # Botões de filtro
-│ │ ├── market-overview.tsx # Overview do mercado
-│ │ ├── navigation.tsx # Navegação principal
-│ │ ├── price-chart.tsx # Gráficos de preços
-│ │ ├── search-bar.tsx # Barra de busca
-│ │ └── _-skeleton.tsx # Loading skeletons
-│ │
-│ ├── 📁 pages/ # Páginas da aplicação
-│ │ ├── home.tsx # Página inicial (dashboard)
-│ │ ├── coin-details.tsx # Detalhes de moeda específica
-│ │ ├── favorites.tsx # Moedas favoritas
-│ │ └── portfolio.tsx # Portfolio tracker
-│ │
-│ ├── 📁 hooks/ # Hooks customizados
-│ │ ├── use-crypto.ts # Hook para dados de moedas
-│ │ ├── use-coin-details.ts # Hook para detalhes de moeda
-│ │ ├── use-favorites.ts # Hook para favoritos
-│ │ ├── use-portfolio.ts # Hook para portfolio
-│ │ └── use-price-history.ts # Hook para histórico de preços
-│ │
-│ ├── 📁 contexts/ # Contextos React
-│ │ └── theme-context.tsx # Context do tema (dark/light)
-│ │
-│ ├── 📁 services/ # Serviços externos
-│ │ └── api.ts # Integração com CoinGecko API
-│ │
-│ ├── 📁 types/ # Definições TypeScript
-│ │ ├── crypto.ts # Tipos de criptomoedas
-│ │ └── portfolio.ts # Tipos do portfolio
-│ │
-│ ├── 📁 lib/ # Utilitários
-│ │ └── utils.ts # Funções auxiliares
-│ │
-│ ├── App.tsx # Componente raiz
-│ ├── main.tsx # Entrada da aplicação
-│ └── globals.css # Estilos globais
+├── 📁 src/                          # Código fonte principal
+│   ├── 📁 components/               # Componentes React reutilizáveis
+│   │   ├── 📁 ui/                   # Componentes UI base (Radix UI)
+│   │   │   ├── button.tsx           # Botão customizado
+│   │   │   ├── card.tsx             # Container de card
+│   │   │   ├── dialog.tsx           # Modal/Dialog
+│   │   │   ├── input.tsx            # Campo de entrada
+│   │   │   ├── tabs.tsx             # Componente de abas
+│   │   │   ├── skeleton.tsx         # Loading placeholder
+│   │   │   └── ...                  # Outros componentes UI
+│   │   ├── coin-card.tsx            # Card individual de moeda
+│   │   ├── coin-list.tsx            # Lista/grid de moedas
+│   │   ├── coin-row.tsx             # Linha da tabela de moedas
+│   │   ├── dashboard-header.tsx     # Cabeçalho do dashboard
+│   │   ├── filter-buttons.tsx       # Botões de filtro
+│   │   ├── market-overview.tsx      # Overview do mercado
+│   │   ├── navigation.tsx           # Navegação principal
+│   │   ├── price-chart.tsx          # Gráficos de preços
+│   │   ├── search-bar.tsx           # Barra de busca
+│   │   └── *-skeleton.tsx           # Loading skeletons
+│   │
+│   ├── 📁 pages/                    # Páginas da aplicação
+│   │   ├── home.tsx                 # Página inicial (dashboard)
+│   │   ├── coin-details.tsx         # Detalhes de moeda específica
+│   │   ├── favorites.tsx            # Moedas favoritas
+│   │   └── portfolio.tsx            # Portfolio tracker
+│   │
+│   ├── 📁 hooks/                    # Hooks customizados
+│   │   ├── use-crypto.ts            # Hook para dados de moedas
+│   │   ├── use-coin-details.ts      # Hook para detalhes de moeda
+│   │   ├── use-favorites.ts         # Hook para favoritos
+│   │   ├── use-portfolio.ts         # Hook para portfolio
+│   │   └── use-price-history.ts     # Hook para histórico de preços
+│   │
+│   ├── 📁 contexts/                 # Contextos React
+│   │   └── theme-context.tsx        # Context do tema (dark/light)
+│   │
+│   ├── 📁 services/                 # Serviços externos
+│   │   └── api.ts                   # Integração com CoinGecko API
+│   │
+│   ├── 📁 types/                    # Definições TypeScript
+│   │   ├── crypto.ts                # Tipos de criptomoedas
+│   │   └── portfolio.ts             # Tipos do portfolio
+│   │
+│   ├── 📁 lib/                      # Utilitários
+│   │   └── utils.ts                 # Funções auxiliares
+│   │
+│   ├── App.tsx                      # Componente raiz
+│   ├── main.tsx                     # Entrada da aplicação
+│   └── globals.css                  # Estilos globais
 │
-├── 📁 public/ # Arquivos públicos
-│ ├── favicon.svg # Ícone do site (azul vibrante)
-│ ├── favicon-16x16.svg # Ícone 16x16
-│ ├── favicon-32x32.svg # Ícone 32x32
-│ └── placeholder-_.svg # Imagens placeholder
+├── 📁 public/                       # Arquivos públicos
+│   ├── favicon.svg                  # Ícone do site (azul vibrante)
+│   ├── favicon-16x16.svg            # Ícone 16x16
+│   ├── favicon-32x32.svg            # Ícone 32x32
+│   └── placeholder-*.svg            # Imagens placeholder
 │
-├── 📁 scripts/ # Scripts de automação
-│ └── setup-git.sh # Setup de Git hooks
+├── 📁 scripts/                      # Scripts de automação
+│   └── setup-git.sh                 # Setup de Git hooks
 │
-├── 📄 package.json # Dependências e scripts
-├── 📄 vite.config.ts # Configuração do Vite
-├── 📄 tailwind.config.js # Configuração do Tailwind CSS
-├── 📄 tsconfig.json # Configuração do TypeScript
-├── 📄 vercel.json # Configuração de deploy
-├── 📄 .gitignore # Arquivos ignorados pelo Git
-└── 📄 README.md # Esta documentação
-\`\`\`
+├── 📄 package.json                  # Dependências e scripts
+├── 📄 vite.config.ts                # Configuração do Vite
+├── 📄 tailwind.config.js            # Configuração do Tailwind CSS
+├── 📄 tsconfig.json                 # Configuração do TypeScript
+├── 📄 vercel.json                   # Configuração de deploy
+├── 📄 .gitignore                    # Arquivos ignorados pelo Git
+└── 📄 README.md                     # Esta documentação
+```
 
 ### 🎯 **Organização por Responsabilidade**
 
