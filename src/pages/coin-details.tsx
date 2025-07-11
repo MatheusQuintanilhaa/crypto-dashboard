@@ -1,5 +1,6 @@
 "use client";
 
+// Fixed import issue for Vercel deployment
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
