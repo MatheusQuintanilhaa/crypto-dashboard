@@ -29,7 +29,8 @@ export function usePortfolio() {
 
     if (existingItem) {
       // Atualizar item existente (média ponderada)
-      const totalValue = existingItem.amount * existingItem.averagePrice + amount * price;
+      const totalValue =
+        existingItem.amount * existingItem.averagePrice + amount * price;
       const totalAmount = existingItem.amount + amount;
       const newAveragePrice = totalValue / totalAmount;
 
@@ -66,7 +67,11 @@ export function usePortfolio() {
     setPortfolio((prev) => prev.filter((item) => item.id !== itemId));
   };
 
-  const updatePortfolioItem = (itemId: string, amount: number, price: number) => {
+  const updatePortfolioItem = (
+    itemId: string,
+    amount: number,
+    price: number
+  ) => {
     setPortfolio((prev) =>
       prev.map((item) =>
         item.id === itemId
@@ -81,7 +86,9 @@ export function usePortfolio() {
     );
   };
 
-  const calculateStats = (currentPrices: Record<string, number>): PortfolioStats => {
+  const calculateStats = (
+    currentPrices: Record<string, number>
+  ): PortfolioStats => {
     let totalValue = 0;
     let totalInvested = 0;
 
@@ -92,7 +99,8 @@ export function usePortfolio() {
     });
 
     const totalPnL = totalValue - totalInvested;
-    const totalPnLPercentage = totalInvested > 0 ? (totalPnL / totalInvested) * 100 : 0;
+    const totalPnLPercentage =
+      totalInvested > 0 ? (totalPnL / totalInvested) * 100 : 0;
 
     return {
       totalValue,

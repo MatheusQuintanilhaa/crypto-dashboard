@@ -151,9 +151,11 @@ export default function CoinDetailsPage() {
   const isPositive = coin.market_data.price_change_percentage_24h > 0;
 
   return (
-    <div className={`min-h-screen ${
-      theme === "dark" ? "crypto-background-dark" : "crypto-background-light"
-    } text-foreground`}>
+    <div
+      className={`min-h-screen ${
+        theme === "dark" ? "crypto-background-dark" : "crypto-background-light"
+      } text-foreground`}
+    >
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-2">
@@ -161,17 +163,19 @@ export default function CoinDetailsPage() {
               variant="ghost"
               onClick={() => navigate(-1)}
               className={`p-2 ${
-                theme === "dark" 
-                  ? "text-gray-300 hover:text-white" 
+                theme === "dark"
+                  ? "text-gray-300 hover:text-white"
                   : "text-slate-600 hover:text-slate-800"
               }`}
             >
               <ArrowLeft className="h-5 w-5" />
               <span className="sr-only">Voltar</span>
             </Button>
-            <h2 className={`text-lg font-medium ${
-              theme === "dark" ? "text-gray-300" : "text-slate-600"
-            }`}>
+            <h2
+              className={`text-lg font-medium ${
+                theme === "dark" ? "text-gray-300" : "text-slate-600"
+              }`}
+            >
               Detalhes da Moeda
             </h2>
           </div>
@@ -224,11 +228,13 @@ export default function CoinDetailsPage() {
           {/* Header with coin info */}
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-blue-400/10 rounded-xl blur-xl opacity-50" />
-            <div className={`relative backdrop-blur-sm ${
-              theme === "dark" 
-                ? "crypto-card-glass-dark" 
-                : "crypto-card-glass-light"
-            } shadow-md rounded-xl p-6`}>
+            <div
+              className={`relative backdrop-blur-sm ${
+                theme === "dark"
+                  ? "crypto-card-glass-dark"
+                  : "crypto-card-glass-light"
+              } shadow-md rounded-xl p-6`}
+            >
               <div className="flex flex-col md:flex-row md:items-center gap-6">
                 <div className="flex items-center gap-4">
                   {!imageError ? (
@@ -242,23 +248,29 @@ export default function CoinDetailsPage() {
                       />
                     </div>
                   ) : (
-                    <div className={`w-20 h-20 ${
-                      theme === "dark"
-                        ? "bg-gradient-to-br from-gray-800 to-gray-700 border-gray-600/30"
-                        : "bg-gradient-to-br from-white to-blue-50 border-blue-200/30"
-                    } rounded-full flex items-center justify-center`}>
-                      <span className={`text-2xl font-bold ${
-                        theme === "dark" ? "text-gray-200" : "text-slate-800"
-                      }`}>
+                    <div
+                      className={`w-20 h-20 ${
+                        theme === "dark"
+                          ? "bg-gradient-to-br from-gray-800 to-gray-700 border-gray-600/30"
+                          : "bg-gradient-to-br from-white to-blue-50 border-blue-200/30"
+                      } rounded-full flex items-center justify-center`}
+                    >
+                      <span
+                        className={`text-2xl font-bold ${
+                          theme === "dark" ? "text-gray-200" : "text-slate-800"
+                        }`}
+                      >
                         {coin.symbol.charAt(0).toUpperCase()}
                       </span>
                     </div>
                   )}
                   <div>
                     <div className="flex items-center gap-2">
-                      <h1 className={`text-3xl md:text-4xl font-bold ${
-                        theme === "dark" ? "text-white" : "text-slate-800"
-                      }`}>
+                      <h1
+                        className={`text-3xl md:text-4xl font-bold ${
+                          theme === "dark" ? "text-white" : "text-slate-800"
+                        }`}
+                      >
                         {coin.name}
                       </h1>
                       <Badge
@@ -285,8 +297,8 @@ export default function CoinDetailsPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`transition-colors ${
-                            theme === "dark" 
-                              ? "text-gray-400 hover:text-blue-400" 
+                            theme === "dark"
+                              ? "text-gray-400 hover:text-blue-400"
                               : "text-slate-600 hover:text-blue-600"
                           }`}
                         >
@@ -300,8 +312,8 @@ export default function CoinDetailsPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`transition-colors ${
-                            theme === "dark" 
-                              ? "text-gray-400 hover:text-blue-400" 
+                            theme === "dark"
+                              ? "text-gray-400 hover:text-blue-400"
                               : "text-slate-600 hover:text-blue-600"
                           }`}
                         >
@@ -315,8 +327,8 @@ export default function CoinDetailsPage() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`transition-colors ${
-                            theme === "dark" 
-                              ? "text-gray-400 hover:text-blue-400" 
+                            theme === "dark"
+                              ? "text-gray-400 hover:text-blue-400"
                               : "text-slate-600 hover:text-blue-600"
                           }`}
                         >
@@ -330,9 +342,11 @@ export default function CoinDetailsPage() {
 
                 <div className="md:ml-auto">
                   <div className="flex flex-col items-start md:items-end">
-                    <div className={`text-3xl md:text-4xl font-bold ${
-                      theme === "dark" ? "text-white" : "text-slate-800"
-                    }`}>
+                    <div
+                      className={`text-3xl md:text-4xl font-bold ${
+                        theme === "dark" ? "text-white" : "text-slate-800"
+                      }`}
+                    >
                       {formatPrice(coin.market_data.current_price.usd)}
                     </div>
                     <div
@@ -353,9 +367,13 @@ export default function CoinDetailsPage() {
                         ).toFixed(2)}
                         %
                       </span>
-                      <span className={`text-sm ${
-                        theme === "dark" ? "text-gray-400" : "text-slate-500"
-                      }`}>(24h)</span>
+                      <span
+                        className={`text-sm ${
+                          theme === "dark" ? "text-gray-400" : "text-slate-500"
+                        }`}
+                      >
+                        (24h)
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -365,11 +383,13 @@ export default function CoinDetailsPage() {
 
           {/* Tabs for different sections */}
           <Tabs defaultValue="overview" className="space-y-6">
-            <TabsList className={`${
-              theme === "dark" 
-                ? "crypto-card-glass-dark border border-gray-600/50" 
-                : "crypto-card-glass-light border border-blue-200/50"
-            }`}>
+            <TabsList
+              className={`${
+                theme === "dark"
+                  ? "crypto-card-glass-dark border border-gray-600/50"
+                  : "crypto-card-glass-light border border-blue-200/50"
+              }`}
+            >
               <TabsTrigger value="overview">Visão Geral</TabsTrigger>
               <TabsTrigger value="chart">Gráfico</TabsTrigger>
               <TabsTrigger value="markets">Mercados</TabsTrigger>
@@ -442,14 +462,18 @@ export default function CoinDetailsPage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className={`text-xl font-bold ${
-                      theme === "dark" ? "text-white" : "text-slate-800"
-                    }`}>
+                    <p
+                      className={`text-xl font-bold ${
+                        theme === "dark" ? "text-white" : "text-slate-800"
+                      }`}
+                    >
                       {formatLargeNumber(coin.market_data.total_volume.usd)}
                     </p>
-                    <p className={`text-sm mt-1 ${
-                      theme === "dark" ? "text-gray-400" : "text-slate-500"
-                    }`}>
+                    <p
+                      className={`text-sm mt-1 ${
+                        theme === "dark" ? "text-gray-400" : "text-slate-500"
+                      }`}
+                    >
                       {(
                         (coin.market_data.total_volume.usd /
                           coin.market_data.market_cap.usd) *

@@ -1,5 +1,10 @@
 import { useState, useMemo } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
@@ -21,7 +26,8 @@ import toast, { Toaster } from "react-hot-toast";
 export default function PortfolioPage() {
   const { theme } = useTheme();
   const { data: coins } = useCrypto();
-  const { portfolio, addToPortfolio, removeFromPortfolio, calculateStats } = usePortfolio();
+  const { portfolio, addToPortfolio, removeFromPortfolio, calculateStats } =
+    usePortfolio();
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState("");
@@ -53,7 +59,7 @@ export default function PortfolioPage() {
 
     addToPortfolio(coin, parseFloat(amount), parseFloat(price));
     toast.success(`${coin.name} adicionado ao portfolio!`);
-    
+
     setIsAddDialogOpen(false);
     setSelectedCoin("");
     setAmount("");
@@ -92,7 +98,10 @@ export default function PortfolioPage() {
     return {
       primary: theme === "light" ? "text-slate-800" : "text-white",
       secondary: theme === "light" ? "text-slate-600" : "text-slate-300",
-      dialogBg: theme === "light" ? "bg-gradient-to-br from-white to-blue-50" : "bg-gradient-to-br from-slate-800 to-slate-700",
+      dialogBg:
+        theme === "light"
+          ? "bg-gradient-to-br from-white to-blue-50"
+          : "bg-gradient-to-br from-slate-800 to-slate-700",
     };
   };
 
@@ -101,7 +110,7 @@ export default function PortfolioPage() {
   return (
     <div className={getPageBackgroundClasses()}>
       <Toaster position="top-right" />
-      
+
       <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -115,12 +124,16 @@ export default function PortfolioPage() {
                 <Wallet className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className={`text-3xl font-bold ${textClasses.primary}`}>Meu Portfolio</h1>
-                <p className={textClasses.secondary}>Acompanhe seus investimentos em criptomoedas</p>
+                <h1 className={`text-3xl font-bold ${textClasses.primary}`}>
+                  Meu Portfolio
+                </h1>
+                <p className={textClasses.secondary}>
+                  Acompanhe seus investimentos em criptomoedas
+                </p>
               </div>
             </div>
 
-            <Button 
+            <Button
               onClick={() => setIsAddDialogOpen(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white"
             >
@@ -131,11 +144,17 @@ export default function PortfolioPage() {
             {/* Modal Dialog */}
             {isAddDialogOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                <div className={`${textClasses.dialogBg} p-6 rounded-lg shadow-xl max-w-md w-full mx-4 border ${
-                  theme === "light" ? "border-blue-200" : "border-slate-600"
-                }`}>
+                <div
+                  className={`${
+                    textClasses.dialogBg
+                  } p-6 rounded-lg shadow-xl max-w-md w-full mx-4 border ${
+                    theme === "light" ? "border-blue-200" : "border-slate-600"
+                  }`}
+                >
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className={`text-lg font-semibold ${textClasses.primary}`}>
+                    <h3
+                      className={`text-lg font-semibold ${textClasses.primary}`}
+                    >
                       Adicionar Moeda ao Portfolio
                     </h3>
                     <Button
@@ -147,10 +166,13 @@ export default function PortfolioPage() {
                       ✕
                     </Button>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div>
-                      <label htmlFor="coin" className={`block text-sm font-medium mb-1 ${textClasses.primary}`}>
+                      <label
+                        htmlFor="coin"
+                        className={`block text-sm font-medium mb-1 ${textClasses.primary}`}
+                      >
                         Moeda
                       </label>
                       <select
@@ -172,7 +194,10 @@ export default function PortfolioPage() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="amount" className={`block text-sm font-medium mb-1 ${textClasses.primary}`}>
+                      <label
+                        htmlFor="amount"
+                        className={`block text-sm font-medium mb-1 ${textClasses.primary}`}
+                      >
                         Quantidade
                       </label>
                       <Input
@@ -190,7 +215,10 @@ export default function PortfolioPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="price" className={`block text-sm font-medium mb-1 ${textClasses.primary}`}>
+                      <label
+                        htmlFor="price"
+                        className={`block text-sm font-medium mb-1 ${textClasses.primary}`}
+                      >
                         Preço de Compra (USD)
                       </label>
                       <Input
@@ -207,7 +235,10 @@ export default function PortfolioPage() {
                         }`}
                       />
                     </div>
-                    <Button onClick={handleAddToPortfolio} className="w-full bg-blue-600 hover:bg-blue-700">
+                    <Button
+                      onClick={handleAddToPortfolio}
+                      className="w-full bg-blue-600 hover:bg-blue-700"
+                    >
                       Adicionar ao Portfolio
                     </Button>
                   </div>
@@ -226,7 +257,9 @@ export default function PortfolioPage() {
             >
               <Card className={getCardClasses()}>
                 <CardHeader className="pb-2">
-                  <CardTitle className={`text-sm font-medium ${textClasses.secondary} flex items-center gap-2`}>
+                  <CardTitle
+                    className={`text-sm font-medium ${textClasses.secondary} flex items-center gap-2`}
+                  >
                     <DollarSign className="h-4 w-4" />
                     Valor Total
                   </CardTitle>
@@ -240,7 +273,9 @@ export default function PortfolioPage() {
 
               <Card className={getCardClasses()}>
                 <CardHeader className="pb-2">
-                  <CardTitle className={`text-sm font-medium ${textClasses.secondary} flex items-center gap-2`}>
+                  <CardTitle
+                    className={`text-sm font-medium ${textClasses.secondary} flex items-center gap-2`}
+                  >
                     <PieChart className="h-4 w-4" />
                     Investido
                   </CardTitle>
@@ -254,7 +289,9 @@ export default function PortfolioPage() {
 
               <Card className={getCardClasses()}>
                 <CardHeader className="pb-2">
-                  <CardTitle className={`text-sm font-medium ${textClasses.secondary} flex items-center gap-2`}>
+                  <CardTitle
+                    className={`text-sm font-medium ${textClasses.secondary} flex items-center gap-2`}
+                  >
                     {stats.totalPnL >= 0 ? (
                       <TrendingUp className="h-4 w-4 text-green-600" />
                     ) : (
@@ -276,14 +313,18 @@ export default function PortfolioPage() {
 
               <Card className={getCardClasses()}>
                 <CardHeader className="pb-2">
-                  <CardTitle className={`text-sm font-medium ${textClasses.secondary}`}>
+                  <CardTitle
+                    className={`text-sm font-medium ${textClasses.secondary}`}
+                  >
                     P&L Percentual
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div
                     className={`text-2xl font-bold ${
-                      stats.totalPnLPercentage >= 0 ? "text-green-700" : "text-red-700"
+                      stats.totalPnLPercentage >= 0
+                        ? "text-green-700"
+                        : "text-red-700"
                     }`}
                   >
                     {formatPercentage(stats.totalPnLPercentage)}
@@ -300,16 +341,22 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-center py-12"
-            >                <div className="max-w-md mx-auto">
-                  <div className="mb-4">
-                    <Wallet className={`h-16 w-16 mx-auto ${textClasses.secondary}`} />
-                  </div>
-                  <h3 className={`text-xl font-semibold ${textClasses.primary} mb-2`}>
-                    Portfolio vazio
-                  </h3>
-                  <p className={`${textClasses.secondary} mb-6`}>
-                    Comece adicionando suas primeiras criptomoedas ao portfolio
-                  </p>
+            >
+              {" "}
+              <div className="max-w-md mx-auto">
+                <div className="mb-4">
+                  <Wallet
+                    className={`h-16 w-16 mx-auto ${textClasses.secondary}`}
+                  />
+                </div>
+                <h3
+                  className={`text-xl font-semibold ${textClasses.primary} mb-2`}
+                >
+                  Portfolio vazio
+                </h3>
+                <p className={`${textClasses.secondary} mb-6`}>
+                  Comece adicionando suas primeiras criptomoedas ao portfolio
+                </p>
                 <Button
                   onClick={() => setIsAddDialogOpen(true)}
                   className="bg-blue-600 hover:bg-blue-700"
@@ -326,14 +373,17 @@ export default function PortfolioPage() {
               transition={{ delay: 0.2 }}
               className="space-y-4"
             >
-              <h2 className={`text-xl font-semibold ${textClasses.primary}`}>Suas Moedas</h2>
+              <h2 className={`text-xl font-semibold ${textClasses.primary}`}>
+                Suas Moedas
+              </h2>
               <div className="grid gap-4">
                 {portfolio.map((item, index) => {
                   const currentPrice = currentPrices[item.coinId] || 0;
                   const currentValue = item.amount * currentPrice;
                   const investedValue = item.amount * item.averagePrice;
                   const pnl = currentValue - investedValue;
-                  const pnlPercentage = investedValue > 0 ? (pnl / investedValue) * 100 : 0;
+                  const pnlPercentage =
+                    investedValue > 0 ? (pnl / investedValue) * 100 : 0;
 
                   return (
                     <motion.div
@@ -342,7 +392,9 @@ export default function PortfolioPage() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      <Card className={`${getCardClasses()} hover:shadow-xl transition-shadow`}>
+                      <Card
+                        className={`${getCardClasses()} hover:shadow-xl transition-shadow`}
+                      >
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
@@ -353,21 +405,34 @@ export default function PortfolioPage() {
                               />
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <h3 className={`font-semibold ${textClasses.primary}`}>{item.name}</h3>
-                                  <Badge variant="outline" className={`text-xs ${
-                                    theme === "light" ? "border-blue-200" : "border-slate-500"
-                                  }`}>
+                                  <h3
+                                    className={`font-semibold ${textClasses.primary}`}
+                                  >
+                                    {item.name}
+                                  </h3>
+                                  <Badge
+                                    variant="outline"
+                                    className={`text-xs ${
+                                      theme === "light"
+                                        ? "border-blue-200"
+                                        : "border-slate-500"
+                                    }`}
+                                  >
                                     {item.symbol.toUpperCase()}
                                   </Badge>
                                 </div>
-                                <p className={`text-sm ${textClasses.secondary}`}>
+                                <p
+                                  className={`text-sm ${textClasses.secondary}`}
+                                >
                                   {item.amount} {item.symbol.toUpperCase()}
                                 </p>
                               </div>
                             </div>
 
                             <div className="text-right space-y-1">
-                              <div className={`text-lg font-semibold ${textClasses.primary}`}>
+                              <div
+                                className={`text-lg font-semibold ${textClasses.primary}`}
+                              >
                                 {formatCurrency(currentValue)}
                               </div>
                               <div className="flex items-center gap-2">
@@ -376,7 +441,8 @@ export default function PortfolioPage() {
                                     pnl >= 0 ? "text-green-700" : "text-red-700"
                                   }`}
                                 >
-                                  {formatCurrency(pnl)} ({formatPercentage(pnlPercentage)})
+                                  {formatCurrency(pnl)} (
+                                  {formatPercentage(pnlPercentage)})
                                 </span>
                                 {pnl >= 0 ? (
                                   <TrendingUp className="h-4 w-4 text-green-600" />
@@ -388,7 +454,12 @@ export default function PortfolioPage() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  onClick={() => handleRemoveFromPortfolio(item.id, item.name)}
+                                  onClick={() =>
+                                    handleRemoveFromPortfolio(
+                                      item.id,
+                                      item.name
+                                    )
+                                  }
                                   className="text-red-600 hover:text-red-700 hover:bg-red-50"
                                 >
                                   <Trash2 className="h-4 w-4" />
@@ -397,25 +468,41 @@ export default function PortfolioPage() {
                             </div>
                           </div>
 
-                          <div className={`mt-4 pt-4 border-t ${
-                            theme === "light" ? "border-blue-100" : "border-slate-600"
-                          }`}>
+                          <div
+                            className={`mt-4 pt-4 border-t ${
+                              theme === "light"
+                                ? "border-blue-100"
+                                : "border-slate-600"
+                            }`}
+                          >
                             <div className="grid grid-cols-3 gap-4 text-sm">
                               <div>
-                                <span className={textClasses.secondary}>Preço Médio:</span>
-                                <div className={`font-medium ${textClasses.primary}`}>
+                                <span className={textClasses.secondary}>
+                                  Preço Médio:
+                                </span>
+                                <div
+                                  className={`font-medium ${textClasses.primary}`}
+                                >
                                   {formatCurrency(item.averagePrice)}
                                 </div>
                               </div>
                               <div>
-                                <span className={textClasses.secondary}>Preço Atual:</span>
-                                <div className={`font-medium ${textClasses.primary}`}>
+                                <span className={textClasses.secondary}>
+                                  Preço Atual:
+                                </span>
+                                <div
+                                  className={`font-medium ${textClasses.primary}`}
+                                >
                                   {formatCurrency(currentPrice)}
                                 </div>
                               </div>
                               <div>
-                                <span className={textClasses.secondary}>Investido:</span>
-                                <div className={`font-medium ${textClasses.primary}`}>
+                                <span className={textClasses.secondary}>
+                                  Investido:
+                                </span>
+                                <div
+                                  className={`font-medium ${textClasses.primary}`}
+                                >
                                   {formatCurrency(investedValue)}
                                 </div>
                               </div>

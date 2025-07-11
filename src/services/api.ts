@@ -174,33 +174,41 @@ class CryptoAPI {
       bitcoin: {
         name: "Bitcoin",
         symbol: "btc",
-        image: { 
-          thumb: "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png",
-          small: "https://assets.coingecko.com/coins/images/1/small/bitcoin.png", 
-          large: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png" 
+        image: {
+          thumb:
+            "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png",
+          small:
+            "https://assets.coingecko.com/coins/images/1/small/bitcoin.png",
+          large:
+            "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
         },
         current_price: 45000,
         market_cap_rank: 1,
-        description: "Bitcoin é a primeira criptomoeda descentralizada do mundo.",
+        description:
+          "Bitcoin é a primeira criptomoeda descentralizada do mundo.",
         homepage: "https://bitcoin.org",
         github: "https://github.com/bitcoin/bitcoin",
-        twitter: "bitcoin"
+        twitter: "bitcoin",
       },
       ethereum: {
         name: "Ethereum",
-        symbol: "eth", 
-        image: { 
-          thumb: "https://assets.coingecko.com/coins/images/279/thumb/ethereum.png",
-          small: "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
-          large: "https://assets.coingecko.com/coins/images/279/large/ethereum.png" 
+        symbol: "eth",
+        image: {
+          thumb:
+            "https://assets.coingecko.com/coins/images/279/thumb/ethereum.png",
+          small:
+            "https://assets.coingecko.com/coins/images/279/small/ethereum.png",
+          large:
+            "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
         },
         current_price: 3000,
         market_cap_rank: 2,
-        description: "Ethereum é uma plataforma descentralizada que executa contratos inteligentes.",
+        description:
+          "Ethereum é uma plataforma descentralizada que executa contratos inteligentes.",
         homepage: "https://ethereum.org",
         github: "https://github.com/ethereum/go-ethereum",
-        twitter: "ethereum"
-      }
+        twitter: "ethereum",
+      },
     };
 
     const coin = coinData[coinId as keyof typeof coinData] || coinData.bitcoin;
@@ -212,7 +220,7 @@ class CryptoAPI {
       image: coin.image,
       market_cap_rank: coin.market_cap_rank,
       description: {
-        en: coin.description
+        en: coin.description,
       },
       links: {
         homepage: [coin.homepage],
@@ -227,61 +235,67 @@ class CryptoAPI {
         subreddit_url: "",
         repos_url: {
           github: [coin.github],
-          bitbucket: []
-        }
+          bitbucket: [],
+        },
       },
       market_data: {
         current_price: {
-          usd: coin.current_price
+          usd: coin.current_price,
         },
         price_change_percentage_24h: (Math.random() - 0.5) * 10,
         price_change_24h: coin.current_price * (Math.random() - 0.5) * 0.05,
         market_cap: {
-          usd: coin.current_price * 19000000
+          usd: coin.current_price * 19000000,
         },
-        market_cap_change_24h: coin.current_price * 19000000 * (Math.random() - 0.5) * 0.05,
+        market_cap_change_24h:
+          coin.current_price * 19000000 * (Math.random() - 0.5) * 0.05,
         market_cap_change_percentage_24h: (Math.random() - 0.5) * 5,
         total_volume: {
-          usd: coin.current_price * 500000
+          usd: coin.current_price * 500000,
         },
         high_24h: {
-          usd: coin.current_price * 1.05
+          usd: coin.current_price * 1.05,
         },
         low_24h: {
-          usd: coin.current_price * 0.95
+          usd: coin.current_price * 0.95,
         },
         circulating_supply: 19000000,
-        total_supply: coinId === 'bitcoin' ? 19000000 : 120000000,
-        max_supply: coinId === 'bitcoin' ? 21000000 : null,
+        total_supply: coinId === "bitcoin" ? 19000000 : 120000000,
+        max_supply: coinId === "bitcoin" ? 21000000 : null,
         ath: {
-          usd: coin.current_price * 1.5
+          usd: coin.current_price * 1.5,
         },
         ath_change_percentage: {
-          usd: -25
+          usd: -25,
         },
         ath_date: {
-          usd: "2021-11-10T14:24:11.849Z"
+          usd: "2021-11-10T14:24:11.849Z",
         },
         atl: {
-          usd: coin.current_price * 0.1
+          usd: coin.current_price * 0.1,
         },
         atl_change_percentage: {
-          usd: 900
+          usd: 900,
         },
         atl_date: {
-          usd: "2015-01-14T00:00:00.000Z"
+          usd: "2015-01-14T00:00:00.000Z",
         },
         price_change_percentage_7d: (Math.random() - 0.5) * 20,
-        price_change_percentage_30d: (Math.random() - 0.5) * 40
-      }
+        price_change_percentage_30d: (Math.random() - 0.5) * 40,
+      },
     };
   }
 
-  async getCoinPriceHistory(coinId: string, days: number = 7): Promise<PriceHistory> {
+  async getCoinPriceHistory(
+    coinId: string,
+    days: number = 7
+  ): Promise<PriceHistory> {
     try {
       // Primeira tentativa: CoinGecko direto
       let response = await fetch(
-        `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}&interval=${days <= 1 ? 'hourly' : 'daily'}`,
+        `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}&interval=${
+          days <= 1 ? "hourly" : "daily"
+        }`,
         {
           headers: {
             Accept: "application/json",
@@ -294,7 +308,9 @@ class CryptoAPI {
         console.log("Tentando buscar histórico com proxy...");
         response = await fetch(
           `https://api.allorigins.win/get?url=${encodeURIComponent(
-            `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}&interval=${days <= 1 ? 'hourly' : 'daily'}`
+            `${BASE_URL}/coins/${coinId}/market_chart?vs_currency=usd&days=${days}&interval=${
+              days <= 1 ? "hourly" : "daily"
+            }`
           )}`
         );
 
@@ -320,18 +336,23 @@ class CryptoAPI {
     const now = Date.now();
     const interval = days <= 1 ? 3600000 : 86400000; // 1 hour or 1 day
     const points = days <= 1 ? 24 : days;
-    
+
     // Base price based on coin
-    const basePrice = coinId === 'bitcoin' ? 45000 : 
-                     coinId === 'ethereum' ? 3000 : 
-                     coinId === 'tether' ? 1.0 : 1000;
-    
+    const basePrice =
+      coinId === "bitcoin"
+        ? 45000
+        : coinId === "ethereum"
+        ? 3000
+        : coinId === "tether"
+        ? 1.0
+        : 1000;
+
     const prices: [number, number][] = [];
     const market_caps: [number, number][] = [];
     const total_volumes: [number, number][] = [];
 
     for (let i = points; i >= 0; i--) {
-      const timestamp = now - (i * interval);
+      const timestamp = now - i * interval;
       const variation = (Math.random() - 0.5) * 0.1; // ±5% variation
       const price = basePrice * (1 + variation);
       const volume = basePrice * 1000000 * (0.8 + Math.random() * 0.4); // Random volume

@@ -3,11 +3,13 @@
 ## ✅ Principais Correções Implementadas:
 
 ### 🎨 **Backgrounds e Temas:**
+
 - ✅ Background dinâmico: `crypto-background-dark` / `crypto-background-light`
 - ✅ Import do `useTheme` hook
 - ✅ Variable `theme` adicionada no component
 
 ### 📝 **Textos Principais:**
+
 - ✅ Títulos de moedas: cores dinâmicas (branco no dark, slate-800 no light)
 - ✅ Preços: cores dinâmicas
 - ✅ Textos secundários: gray-400 no dark, slate-500 no light
@@ -21,18 +23,21 @@
 5. **Indicadores de tempo:** "(24h)", "7d", "30d" etc.
 
 ### 📋 **Status Atual:**
+
 - ✅ Build funcionando
 - ✅ Correções principais aplicadas
 - ⚠️ Algumas classes fixas ainda precisam ser corrigidas
 - ✅ Estrutura preparada para correções restantes
 
 ### 🎯 **Estratégia Recomendada:**
+
 - Continuar correções manuais pontuais
 - Evitar substituições globais com PowerShell
 - Testar o build após cada grupo de correções
 - Focar nos elementos mais visíveis primeiro
 
 ### 💡 **Classes de Referência:**
+
 ```tsx
 // Textos principais
 className={`${theme === "dark" ? "text-white" : "text-slate-800"}`}

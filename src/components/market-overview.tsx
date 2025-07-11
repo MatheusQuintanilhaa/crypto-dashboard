@@ -28,9 +28,9 @@ const getThemeClasses = (isDarkMode: boolean = false) => ({
   cardHover: isDarkMode
     ? "hover:bg-slate-700/90"
     : "hover:bg-gradient-to-br hover:from-white hover:to-blue-100",
-  text: isDarkMode ? "text-slate-100" : "text-gray-900",  // Texto mais escuro
-  textMuted: isDarkMode ? "text-slate-400" : "text-gray-700",  // Texto secundário mais escuro
-  textLight: isDarkMode ? "text-slate-300" : "text-gray-600",  // Texto auxiliar mais escuro
+  text: isDarkMode ? "text-slate-100" : "text-gray-900", // Texto mais escuro
+  textMuted: isDarkMode ? "text-slate-400" : "text-gray-700", // Texto secundário mais escuro
+  textLight: isDarkMode ? "text-slate-300" : "text-gray-600", // Texto auxiliar mais escuro
   border: isDarkMode ? "border-slate-700" : "border-blue-200/50",
   button: isDarkMode
     ? "bg-slate-700 hover:bg-slate-600 border-slate-600"
@@ -103,9 +103,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <Card
-        className="bg-white border-green-400 shadow-lg"
-      >
+      <Card className="bg-white border-green-400 shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-black font-bold">
             <TrendingUp className="h-5 w-5 text-green-600" />
@@ -155,9 +153,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card
-        className="bg-white border-red-400 shadow-lg"
-      >
+      <Card className="bg-white border-red-400 shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-black font-bold">
             <TrendingDown className="h-5 w-5 text-red-600" />
@@ -207,9 +203,7 @@ export function MarketOverview({ coins, isLoading }: MarketOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card
-        className="bg-white border-blue-400 shadow-lg"
-      >
+      <Card className="bg-white border-blue-400 shadow-lg">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-black font-bold">
             <svg
